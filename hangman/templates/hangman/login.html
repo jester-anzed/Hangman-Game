@@ -1,0 +1,32 @@
+{% extends "hangman/layout.html" %}
+
+
+{% block body %}
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+
+    <div id="center">
+            <div id="login-form">
+                <form action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                <h2 style="color: white;">Sign in</h2>
+                <div>
+                    <input id="user" type="text" name="username" placeholder="Username">
+                </div>
+                <div >
+                    <input id="user" type="password" name="password" placeholder="Password">
+                </div>
+                <input id="log-button" type="submit" value="Login">
+
+                <div id="login-reg">
+                    <div style="color: white; padding: 10px;">Don't have an account?</div>
+                    <a href="{% url 'register' %}">Register here.</a>
+                </div>
+            </div>
+        </form>
+
+        
+    </div>
+
+{% endblock %}
