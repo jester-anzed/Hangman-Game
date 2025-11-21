@@ -3,7 +3,7 @@
 
 {% block body %}
     <div id="center">
-        <div id="login-form-1">
+        <div id="login-form" style="height: 450px;">
             <form  action="{% url 'register' %}" method="post">
             {% csrf_token %}
             <div id="login-header">Register</div>

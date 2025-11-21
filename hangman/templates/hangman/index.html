@@ -2,7 +2,21 @@
 
 
 {% block body %}
-
-    TO DO
+    <div id="center">
+        <div id="login-form" style="height: 500px; width: 700px;">
+            <div id="log-content">
+                <div id="log-content-1">Name</div>
+                <div id="log-content-1">High Score</div>
+                <a id="log-content-1" href="{% url 'logout' %}">Logout</a>
+            </div>
+            <div style="justify-self: center;">
+                <div id="easy">Easy</div>
+                <div id="medium">Medium</div>
+                <div id="hard"> Hard</div>
+            </div>
+        </div>
+    
+    </div>
+    
 
 {% endblock %}

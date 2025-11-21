@@ -4,6 +4,8 @@
     display: flex;
     justify-content: center;    
     align-items: center; 
+    font-family: Arial, sans-serif;
+    background-color: dodgerblue;
 
 }
 
@@ -48,27 +50,66 @@
     background-color: dodgerblue;
     border-radius: 10px;
     height: 50px;
-
-
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: dodgerblue;
-}
-
-#login-form-1 {
-    padding: 20px;
-    border: 1px solid gray;
-    text-align: center;
-    width:  500px;
-    height: 450px;
-    border-radius: 20px;
-    background-color: #424242
-}
 
 #login-header {
     font-weight: bold;
     font-size: 30px;
     padding-bottom: 10px;
+}
+
+#log-content {
+    display: flex;
+    justify-content: space-between;
+    height: 150px;
+}
+
+#log-content-1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-family: Arial, Sans-serif;
+    border: 1px solid dodgerblue;
+    height: 50px;
+    font-size: 30px;
+    width: 200px;
+    border-radius: 10px;
+    gap: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+#log-content-1:hover {
+    background-color: dodgerblue;
+
+}
+
+#easy, #medium, #hard{
+    width: 250px;
+    height: 70px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+#easy:hover, #medium:hover, #hard:hover {
+    background-color:black;
+}
+
+#easy {
+    background-color: rgb(19, 206, 19);
+}
+
+#medium {
+    background-color: rgb(238, 238, 21);
+}
+
+#hard {
+    background-color: rgb(255, 0, 0);
 }
