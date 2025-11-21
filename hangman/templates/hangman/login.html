@@ -2,9 +2,7 @@
 
 
 {% block body %}
-    {% if message %}
-        <div>{{ message }}</div>
-    {% endif %}
+    
 
     <div id="center">
             <div id="login-form">
@@ -12,6 +10,9 @@
                     {% csrf_token %}
                 <h2 style="color: white;">Sign in</h2>
                 <div>
+                    {% if message %}
+                        <div style="color: red;">{{ message }}</div>
+                    {% endif %}
                     <input id="user" type="text" name="username" placeholder="Username">
                 </div>
                 <div >
