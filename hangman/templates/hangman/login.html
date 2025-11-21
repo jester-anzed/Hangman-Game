@@ -8,7 +8,7 @@
             <div id="login-form">
                 <form action="{% url 'login' %}" method="post">
                     {% csrf_token %}
-                <h2 style="color: white;">Sign in</h2>
+                <div id="login-header" style="padding-bottom: 20px;">Sign In</div>
                 <div>
                     {% if message %}
                         <div style="color: red;">{{ message }}</div>
@@ -26,8 +26,6 @@
                 </div>
             </div>
         </form>
-
-        
     </div>
 
 {% endblock %}

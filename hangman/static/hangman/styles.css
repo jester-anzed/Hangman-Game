@@ -56,3 +56,19 @@ body {
     font-family: Arial, sans-serif;
     background-color: dodgerblue;
 }
+
+#login-form-1 {
+    padding: 20px;
+    border: 1px solid gray;
+    text-align: center;
+    width:  500px;
+    height: 450px;
+    border-radius: 20px;
+    background-color: #424242
+}
+
+#login-header {
+    font-weight: bold;
+    font-size: 30px;
+    padding-bottom: 10px;
+}
