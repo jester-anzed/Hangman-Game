@@ -100,6 +100,7 @@
 
 #easy:hover, #medium:hover, #hard:hover {
     background-color:black;
+    color: white;
 }
 
 #easy {
@@ -112,4 +113,82 @@
 
 #hard {
     background-color: rgb(255, 0, 0);
+}
+
+#game-box {
+    width: 80%;
+    height: 80%;
+    border: 2px solid black;
+}
+
+#game-top {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    font-weight: bold;
+    font-size: 30px;
+}
+ 
+#game-middle {
+    display: flex;
+    text-align: center;
+    justify-content: space-evenly;
+}
+
+#game-body, #game-feet {
+    display: flex;
+}
+
+#game-stick {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+}
+
+#stick {
+    font-family: monospace;
+    font-size: 20px;
+    line-height: 20px;
+
+}
+
+#game-word {
+    display: flex;
+    align-items: center;
+    font-size: 100px;
+
+}
+
+#game-column {
+    padding: 10px;
+    display: flex;
+    gap: 7px;
+}
+
+#game-column > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    height: 30px;
+    width: 50px;
+    background-color: gray;
+    font-weight: bold;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+}
+
+#game-key {
+    display: flex;
+    flex-direction: column;
+    padding-left: 160px;
+    padding-top: 120px;
+    
+}
+
+#game-column > div:hover {
+    background-color: red;
+    color: white;
+
 }

@@ -2,7 +2,7 @@
 
 
 {% block body %}
-    <div id="center">
+    <div id="center" style="display: none; ">
         <div id="login-form" style="height: 500px; width: 700px;">
             <div id="log-content">
                 <div id="log-content-1">Name</div>
@@ -10,12 +10,120 @@
                 <a id="log-content-1" href="{% url 'logout' %}">Logout</a>
             </div>
             <div style="justify-self: center;">
-                <div id="easy">Easy</div>
+                <div id="easy" onlick="easy()">Easy</div>
                 <div id="medium">Medium</div>
                 <div id="hard"> Hard</div>
             </div>
         </div>
     
+    </div>
+
+    <div id="center">
+        <div id="game-box">
+            <div id="game-top">
+                <div style="padding-left: 20px;">Name</div>
+                <div style="font-size: 100px;">Hangman</div>
+                <a  style="padding-right: 20px; text-decoration: none;" href="{% url 'logout' %}">Logout</a>
+            </div>
+            <div id="game-middle">
+                <div id="game-word">Word</div>
+                <div id="game-stick">
+                    <pre id="stick">
+ -------
+ ¦     ¦
+ O     ¦
+-|-    ¦
+/ \    ¦
+       ¦
+       //_\\
+                    </pre>
+                     <pre id="stick-1">
+ -------
+ ¦     ¦
+ O     ¦
+-|-    ¦
+/     ¦
+       ¦
+       //_\\
+                    </pre>
+                     <pre id="stick-2">
+ -------
+ ¦     ¦
+ O     ¦
+-|-    ¦
+       ¦
+       ¦
+       //_\\
+                    </pre>
+                     <pre id="stick-3">
+ -------
+ ¦     ¦
+ O     ¦
+-|     ¦
+       ¦
+       ¦
+       //_\\
+                    </pre>
+                     <pre id="stick-4">
+ -------
+ ¦     ¦
+ O     ¦
+ |     ¦
+       ¦
+       ¦
+       //_\\
+                    </pre>
+                    <pre id="stick-5">
+ -------
+ ¦     ¦
+ O     ¦
+       ¦
+       ¦
+       ¦
+       //_\\
+                    </pre>                    
+                </div>
+
+            </div>
+            <div id="game-key">
+                <div id="game-column">
+                    <div>A</div>
+                    <div>B</div> 
+                    <div>C</div>
+                    <div>D</div>
+                    <div>E</div>
+                    <div>F</div>
+                    <div>G</div>
+                    <div>H</div>
+                    <div>I</div>
+                </div>
+                <div id="game-column">
+                    <div>J</div>
+                    <div>K</div>
+                    <div>L</div>
+                    <div>M</div>
+                    <div>N</div>
+                    <div>O</div>
+                    <div>P</div>
+                    <div>Q</div>
+                    <div>R</div>
+                </div>
+                <div id="game-column" style="padding-left: 45px;">
+                    <div>S</div> 
+                    <div>T</div>
+                    <div>U</div>
+                    <div>V</div>
+                    <div>W</div>
+                    <div>X</div>
+                    <div>Y</div>
+                    <div>Z</div>
+                </div> 
+                
+            </div>
+
+        </div>
+
+
     </div>
     
 
