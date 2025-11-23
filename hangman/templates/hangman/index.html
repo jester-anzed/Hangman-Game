@@ -1,8 +1,8 @@
 {% extends "hangman/layout.html" %}
-
+{% load static %}
 
 {% block body %}
-    <div id="center" style="display: none; ">
+    <div id="center">
         <div id="login-form" style="height: 500px; width: 700px;">
             <div id="log-content">
                 <div id="log-content-1">Name</div>
@@ -10,15 +10,15 @@
                 <a id="log-content-1" href="{% url 'logout' %}">Logout</a>
             </div>
             <div style="justify-self: center;">
-                <div id="easy" onlick="easy()">Easy</div>
-                <div id="medium">Medium</div>
-                <div id="hard"> Hard</div>
+                <button id="easy" value="easy" onclick="game_mode(this.value)">Easy</button>
+                <button id="medium" value="medium" onclick="game_mode(this.value)">Medium</button>
+                <button id="hard" value="hard"  onclick="game_mode(this.value)">Hard</button>
             </div>
         </div>
     
     </div>
 
-    <div id="center">
+    <div id="center-1" style="display: none;">
         <div id="game-box">
             <div id="game-top">
                 <div style="padding-left: 20px;">Name</div>
@@ -26,7 +26,7 @@
                 <a  style="padding-right: 20px; text-decoration: none;" href="{% url 'logout' %}">Logout</a>
             </div>
             <div id="game-middle">
-                <div id="game-word">Word</div>
+                <div id="game-word"></div>
                 <div id="game-stick">
                     <pre id="stick">
  -------
@@ -127,4 +127,9 @@
     </div>
     
 
+{% endblock %}
+
+
+{% block script %}
+    <script src="{% static 'hangman/hangman.js' %}"></script>
 {% endblock %}
