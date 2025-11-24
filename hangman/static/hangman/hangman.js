@@ -26,7 +26,6 @@ function game_mode(mode) {
         ran = Math.floor(Math.random() * hard.length);
         word = hard[ran];
         console.log("Hard");
-        console.log(word);
     }
 
     //Hide Game Option and Show Game
@@ -38,7 +37,39 @@ function game_mode(mode) {
     document.getElementById("game-word").innerHTML = underscores;
 
 
+    const gameButton = document.querySelectorAll(".key-button");
+
+    let currentWord = underscores.split(" ");
     
+    var correct = 0;
+
+    gameButton.forEach(button => {
+        button.addEventListener('click', (event) => {
+            user_choice = event.target.textContent;
+       
+            if (word.toLowerCase().includes(user_choice.toLowerCase())) {
+                for (let i = 0; i < word.length; i++ ) {
+                    if (word[i].toLowerCase() === user_choice.toLowerCase()) {
+                        currentWord[i] = user_choice;
+                        finalWord = currentWord.join(' ');
+                        document.getElementById("game-word").innerHTML = finalWord;
+                        correct += 1;
+                        console.log(correct);
+                    }   
+                } 
+            } 
+            console.log(button);
+            button.disabled = true;
+
+            if (correct === word.length) {
+                console.log("Winner!");
+            }
+    
+        });
+
+    });
+
+   
 
 }
 
