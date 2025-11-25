@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block body %}
-    <div id="center" style="display: none;">
+    <div id="center">
         <div id="login-form" style="height: 500px; width: 700px;">
             <div id="log-content">
                 <div id="log-content-1">Name</div>
@@ -18,7 +18,7 @@
     
     </div>
 
-    <div id="center-1" style="display: flex;">
+    <div id="center-1" style="display: none;">
         <div id="game-box">
             <div id="game-top">
                 <div style="padding-left: 20px;">Name</div>
@@ -64,72 +64,10 @@
                     </div>      
                 </div>
                 <div id="game-right">
-                    <div id="game-stick">
-                        <pre id="stick">
- --------
- ¦      ¦
- O      ¦
--|-     ¦
-/ \     ¦
-        ¦
-        //_\\
-<div id="heart">❤❤❤❤❤❤</div>               
-                        </pre>
-                        <pre id="stick-1" style="display: none;">
- --------
- ¦      ¦
- O      ¦
--|-     ¦
-/       ¦
-        ¦
-        //_\\
-<div id="heart">❤❤❤❤❤</div>           
-                        </pre>
-                        <pre id="stick-2" style="display: none;">
- --------
- ¦      ¦
- O      ¦
--|-     ¦
-        ¦
-        ¦
-        //_\\
-<div id="heart">❤❤❤❤</div>            
-                        </pre>
-                        <pre id="stick-3" style="display: none;">
- --------
- ¦      ¦
- O      ¦
--|      ¦
-        ¦
-        ¦
-        //_\\
-<div id="heart">❤❤❤</div>  
-                        </pre>
-                        <pre id="stick-4" style="display: none;">
- --------
- ¦      ¦
- O      ¦
- |      ¦
-        ¦
-        ¦
-        //_\\
-<div id="heart">❤❤</div>  
-                        </pre>
-                        <pre id="stick-5" style="display: none;">
- -------
- ¦      ¦
- O      ¦
-        ¦
-        ¦
-        ¦
-        //_\\
-<div id="heart">❤</div>  
-                        </pre>
-                                      
-                    </div>
-                    
+                    <pre id="game-sticks">
+                    <pre>
                 </div>
-     
+                <div id="winner" style="display: none; font-size: 100px;">Winner!</div>
         </div>
 
 
@@ -140,5 +78,6 @@
 
 
 {% block script %}
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
     <script src="{% static 'hangman/hangman.js' %}"></script>
 {% endblock %}

@@ -144,7 +144,7 @@
 }
  
 #game-left {
-    width: 50%;
+    width: 60%;
     height: 500px;
 
     margin: 20px;
@@ -156,10 +156,8 @@
     height: 400px;
     margin: 20px;
     display: flex;
-    justify-content: center;
     align-items: center;
     font-size: 50px;
-    text-align: center;
     padding-top: 40px;
 }
 
@@ -206,8 +204,4 @@
       cursor: not-allowed;
 }
 
-#heart {
-padding-left: 40px;
-padding-top: 10px;
 
-}

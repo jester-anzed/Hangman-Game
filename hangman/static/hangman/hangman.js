@@ -1,8 +1,66 @@
-let easy = ["Noob", "Value", "Dog", "Cat"]
-let medium = ["Hangman", "Random", "Edited", "Course"]
-let hard = ["Difficult", "Avalanche", "Verbatim", "Paragraph"]
+let gameSticks = [
+ ` --------
+ ¦      ¦
+ O      ¦
+-|-     ¦
+/ \\     ¦
+        ¦
+      //_\\\\
+      
+❤❤❤❤❤❤
+        `,
+` --------
+ ¦      ¦
+ O      ¦
+-|-     ¦
+/       ¦
+        ¦
+      //_\\\\
 
+❤❤❤❤❤
+      `,
+    
+` --------
+ ¦      ¦
+ O      ¦
+-|-     ¦
+        ¦
+        ¦
+      //_\\\\
 
+❤❤❤❤
+      `,
+` --------
+ ¦      ¦
+ O      ¦
+-|      ¦
+        ¦
+        ¦
+      //_\\\\
+
+❤❤❤
+      `,
+` --------
+ ¦      ¦
+ O      ¦
+ |      ¦
+        ¦
+        ¦
+      //_\\\\
+
+❤❤
+      `,
+` --------
+ ¦      ¦
+ O      ¦
+        ¦
+        ¦
+        ¦
+      //_\\\\
+
+❤
+      `,
+]
 
 function game_mode(mode) {
     //Mode bassed on what the user clicked
@@ -42,6 +100,9 @@ function game_mode(mode) {
     let currentWord = underscores.split(" ");
     
     var correct = 0;
+    var wrong = 0;
+
+    document.getElementById("game-sticks").innerHTML = gameSticks[0];
 
     gameButton.forEach(button => {
         button.addEventListener('click', (event) => {
@@ -58,16 +119,25 @@ function game_mode(mode) {
                         console.log(correct);
                     }
                 }
-            console.log("Right"); 
+            
             }
             else {
-                console.log("wrong");
+                wrong += 1
+                document.getElementById("game-sticks").innerHTML = gameSticks[wrong];
 
             }
             
     
             if (correct === word.length) {
-                console.log("Winner!");
+                document.getElementById("center-1").style.display = "none";
+                document.getElementById("winner").style.display = "block";
+
+
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                });
             }
     
         });
