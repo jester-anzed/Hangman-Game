@@ -107,6 +107,8 @@
     font-size: 30px;
     font-weight: bold;
     border-radius: 20px;
+    border: 1px;
+    cursor: pointer;
 }
 
 #easy:hover, #medium:hover, #hard:hover {
@@ -115,6 +117,7 @@
 }
 
 #easy {
+
     background-color: rgb(19, 206, 19);
 }
 
@@ -167,6 +170,7 @@
     height: 50%;
     font-weight: bold;
     font-size: 100px;
+    color: white;
 }
 
 #game-keys {
@@ -194,3 +198,7 @@
     background-color:  red;
 }
 
+.key-button:disabled {
+     text-decoration: line-through; 
+     text-decoration-color: red;
+}

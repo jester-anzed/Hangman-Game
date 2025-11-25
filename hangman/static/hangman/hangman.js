@@ -46,7 +46,8 @@ function game_mode(mode) {
     gameButton.forEach(button => {
         button.addEventListener('click', (event) => {
             user_choice = event.target.textContent;
-       
+            button.disabled = true;
+            console.log("right");
             if (word.toLowerCase().includes(user_choice.toLowerCase())) {
                 for (let i = 0; i < word.length; i++ ) {
                     if (word[i].toLowerCase() === user_choice.toLowerCase()) {
@@ -55,12 +56,16 @@ function game_mode(mode) {
                         document.getElementById("game-word").innerHTML = finalWord;
                         correct += 1;
                         console.log(correct);
-                    }   
-                } 
-            } 
-            console.log(button);
-            button.disabled = true;
+                    }
+                }
+            console.log("Right"); 
+            }
+            else {
+                console.log("wrong");
 
+            }
+            
+    
             if (correct === word.length) {
                 console.log("Winner!");
             }

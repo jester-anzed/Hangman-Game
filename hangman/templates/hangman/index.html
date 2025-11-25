@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block body %}
-    <div id="center" style="display: none;">
+    <div id="center">
         <div id="login-form" style="height: 500px; width: 700px;">
             <div id="log-content">
                 <div id="log-content-1">Name</div>
@@ -18,16 +18,16 @@
     
     </div>
 
-    <div id="center-1">
+    <div id="center-1" style="display: none;">
         <div id="game-box">
             <div id="game-top">
                 <div style="padding-left: 20px;">Name</div>
-                <div style="font-size: 100px;">Hangman</div>
+                <div style="font-size: 100px; color: white">Hangman</div>
                 <a  style="padding-right: 20px; text-decoration: none;" href="{% url 'logout' %}">Logout</a>
             </div>
             <div style="display: flex;">
                 <div id="game-left">    
-                    <div id="game-word">Word</div>
+                    <div id="game-word"></div>
                     <div id="game-keys">
                         <div id="game-column" style="padding: 7px;">
                             <button class="key-button">A</button>
