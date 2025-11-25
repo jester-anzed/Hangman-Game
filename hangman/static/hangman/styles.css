@@ -201,4 +201,13 @@
 .key-button:disabled {
      text-decoration: line-through; 
      text-decoration-color: red;
+      background-color: #cccccc; 
+      opacity: 0.6; 
+      cursor: not-allowed;
+}
+
+#heart {
+padding-left: 40px;
+padding-top: 10px;
+
 }
