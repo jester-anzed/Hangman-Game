@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block body %}
-    <div id="center">
+    <div id="center" style="display: none;">
         <div id="login-form" style="height: 500px; width: 700px;">
             <div id="log-content">
                 <div id="log-content-1">Name</div>
@@ -18,16 +18,53 @@
     
     </div>
 
-    <div id="center-1" style="display: none;">
+    <div id="center-1">
         <div id="game-box">
             <div id="game-top">
                 <div style="padding-left: 20px;">Name</div>
                 <div style="font-size: 100px;">Hangman</div>
                 <a  style="padding-right: 20px; text-decoration: none;" href="{% url 'logout' %}">Logout</a>
             </div>
-            <div id="game-middle">
-                <div id="game-word"></div>
-                <div id="game-stick">
+            <div style="display: flex;">
+                <div id="game-left">    
+                    <div id="game-word">Word</div>
+                    <div id="game-keys">
+                        <div id="game-column" style="padding: 7px;">
+                            <button class="key-button">A</button>
+                            <button class="key-button">B</button>
+                            <button class="key-button">C</button>
+                            <button  class="key-button">D</button>
+                            <button  class="key-button">E</button>
+                            <button  class="key-button">F</button>
+                            <button  class="key-button">G</button>
+                            <button  class="key-button">H</button>
+                            <button  class="key-button">I</button>
+                        </div>
+                        <div id="game-column" style="padding: 7px;">
+                        <button  class="key-button">J</button>
+                        <button  class="key-button">K</button>
+                        <button  class="key-button">L</button>
+                        <button  class="key-button">M</button>
+                        <button  class="key-button">N</button>
+                        <button  class="key-button">O</button>
+                        <button  class="key-button">P</button>
+                        <button  class="key-button">Q</button>
+                        <button  class="key-button">R</button>
+                        </div>
+                        <div id="game-column" style="padding: 7px;">
+                            <button  class="key-button">S</button>
+                            <button  class="key-button">T</button>
+                            <button  class="key-button">U</button>
+                            <button  class="key-button">V</button>
+                            <button  class="key-button">W</button>
+                            <button  class="key-button">X</button>
+                            <button  class="key-button">Y</button>
+                            <button  class="key-button">Z</button>
+                        </div> 
+                    </div>      
+                </div>
+                <div id="game-right">
+                    <div id="game-stick">
                     <pre id="stick">
  -------
  ¦     ¦
@@ -37,7 +74,7 @@
        ¦
        //_\\
                     </pre>
-                     <pre id="stick-1">
+                     <pre id="stick-1" style="display: none; font-family: monospace;">
  -------
  ¦     ¦
  O     ¦
@@ -46,7 +83,7 @@
        ¦
        //_\\
                     </pre>
-                     <pre id="stick-2">
+                     <pre id="stick-2" style="display: none;">
  -------
  ¦     ¦
  O     ¦
@@ -55,7 +92,7 @@
        ¦
        //_\\
                     </pre>
-                     <pre id="stick-3">
+                     <pre id="stick-3" style="display: none;">
  -------
  ¦     ¦
  O     ¦
@@ -64,7 +101,7 @@
        ¦
        //_\\
                     </pre>
-                     <pre id="stick-4">
+                     <pre id="stick-4" style="display: none;">
  -------
  ¦     ¦
  O     ¦
@@ -73,7 +110,7 @@
        ¦
        //_\\
                     </pre>
-                    <pre id="stick-5">
+                    <pre id="stick-5" style="display: none;">
  -------
  ¦     ¦
  O     ¦
@@ -84,43 +121,13 @@
                     </pre>                    
                 </div>
 
-            </div>
-            <div id="game-key">
-                <div id="game-column">
-                    <button class="key-button">A</button>
-                    <button class="key-button">B</button>
-                    <button class="key-button">C</button>
-                    <button  class="key-button">D</button>
-                    <button  class="key-button">E</button>
-                    <button  class="key-button">F</button>
-                    <button  class="key-button">G</button>
-                    <button  class="key-button">H</button>
-                    <button  class="key-button">I</button>
-                </div>
-                <div id="game-column">
-                    <button  class="key-button">J</button>
-                    <button  class="key-button">K</button>
-                    <button  class="key-button">L</button>
-                    <button  class="key-button">M</button>
-                    <button  class="key-button">N</button>
-                    <button  class="key-button">O</button>
-                    <button  class="key-button">P</button>
-                    <button  class="key-button">Q</button>
-                    <button  class="key-button">R</button>
-                </div>
-                <div id="game-column" style="padding-left: 45px;">
-                    <button  class="key-button">S</button>
-                    <button  class="key-button">T</button>
-                    <button  class="key-button">U</button>
-                    <button  class="key-button">V</button>
-                    <button  class="key-button">W</button>
-                    <button  class="key-button">X</button>
-                    <button  class="key-button">Y</button>
-                    <button  class="key-button">Z</button>
-                </div> 
-                
-            </div>
 
+
+
+
+
+                </div>
+     
         </div>
 
 
