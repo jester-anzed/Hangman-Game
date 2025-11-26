@@ -217,7 +217,6 @@
 
 #winPopup, #losePopup {
   display: none; /* Hidden by default */
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: fixed;
@@ -228,6 +227,7 @@
   transform: translate(-50%, -50%); /* Center the popup */
   background-color: rgb(29, 87, 145);
   padding: 20px;
+  margin: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1000; /* Ensure it's above the overlay */
@@ -238,13 +238,13 @@
   color: white; /* Green for win message */
 }
 
-#winPopup, #losePopup button {
+#winPopup button, #losePopup button {
   background-color: grey; /* Blue button */
   color: white;
   padding: 10px 20px;             
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin: 20px;
+  margin: 40px;
 
 }

@@ -75,8 +75,6 @@ let correct = 0;
 let currentWord = ""
 let word = ""
 
-
-console.log(word);
 function game_mode(mode) {
     //Mode bassed on what the user clicked
     if (mode === "easy") {
@@ -135,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     if (wrong === 6) {
                     document.getElementById("overlay").style.display = "block";
-                    document.getElementById("losePopup").style.display = "flex";
+                    document.getElementById("losePopup").style.display = "block";
 
                 }
             }
@@ -157,13 +155,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 function playAgain() {
-    document.getElementById("center").style.display = "flex";
-    document.getElementById("center-1").style.display = "none";  
+    document.getElementById("center-1").style.display = "flex";  
     document.getElementById("overlay").style.display  = "none";
     document.getElementById("winPopup").style.display = "none";   
     document.getElementById("losePopup").style.display = "none";
     correct = 0;
     wrong = 0;
+    currentWord = "";
+    word = "";
+
     const gameButton = document.querySelectorAll(".key-button");
 
     gameButton.forEach(button => {
@@ -171,5 +171,11 @@ function playAgain() {
     })
 }
 
+function menu() {
+    document.getElementById("center").style.display = "flex";
+    document.getElementById("overlay").style.display  = "none";
+     document.getElementById("winPopup").style.display = "none";   
+     document.getElementById("losePopup").style.display = "none";
 
+}
 
