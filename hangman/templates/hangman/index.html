@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block body %}
-    <div id="center">
+    <div id="center" style="display: none;">
         <div id="login-form" style="height: 500px; width: 700px;">
             <div id="log-content">
                 <div id="log-content-1">Name</div>
@@ -18,7 +18,7 @@
     
     </div>
 
-    <div id="center-1" style="display: none;">
+    <div id="center-1" style="display: flex;">
         <div id="game-box">
             <div id="game-top">
                 <div style="padding-left: 20px;">Name</div>
@@ -67,7 +67,17 @@
                     <pre id="game-sticks">
                     <pre>
                 </div>
-                <div id="winner" style="display: none; font-size: 100px;">Winner!</div>
+                <div id="overlay"></div>
+                <div id="winPopup">
+                    <h1>Congratulations! You Won!</h1>
+                    <button id="closePopup" onclick="playAgain()">Play Again</button>
+                    <button id="closePopup" onclick="menu()">Main Menu</button>
+                </div>
+                <div id="losePopup" style="display: block;">
+                    <h1>Sorry, You Lost!</h1>
+                    <button id="closePopup" onclick="playAgain()">Play Again</button>
+                    <button id="closePopup" onclick="menu()">Main Menu</button>
+                </div>
         </div>
 
 

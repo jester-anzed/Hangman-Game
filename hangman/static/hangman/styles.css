@@ -192,7 +192,7 @@
     cursor: pointer;
 }
 
-.key-button:hover {
+.key-button:hover, #losePopup button:hover, #winPopup button:hover {
     background-color:  red;
 }
 
@@ -204,4 +204,47 @@
       cursor: not-allowed;
 }
 
+#overlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+  z-index: 999; /* Ensure it's above other content */
+}
 
+#winPopup, #losePopup {
+  display: none; /* Hidden by default */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 25%;
+  height: 20%;
+  transform: translate(-50%, -50%); /* Center the popup */
+  background-color: rgb(29, 87, 145);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensure it's above the overlay */
+  text-align: center;
+}
+
+#winPopup, #losePopup h1 {
+  color: white; /* Green for win message */
+}
+
+#winPopup, #losePopup button {
+  background-color: grey; /* Blue button */
+  color: white;
+  padding: 10px 20px;             
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 20px;
+
+}

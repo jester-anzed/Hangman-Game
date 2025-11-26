@@ -60,91 +60,116 @@ let gameSticks = [
 
 ❤
       `,
-]
+` --------
+ ¦      ¦
+        ¦
+        ¦
+        ¦
+        ¦
+      //_\\\\
 
+`,
+]
+let wrong = 0;
+let correct = 0;
+let currentWord = ""
+let word = ""
+
+
+console.log(word);
 function game_mode(mode) {
     //Mode bassed on what the user clicked
-    let word = "";
     if (mode === "easy") {
         let easy = ["Noob", "Value", "Dog", "Cat"];
         ran = Math.floor(Math.random() * easy.length);
         word = easy[ran];
-        console.log("Easy")
-        console.log(word);
+    
     }
     else if (mode === "medium") {
         let medium = ["Hangman", "Random", "Edited", "Course"];
         ran = Math.floor(Math.random() * medium.length);
         word = medium[ran];
-        console.log("Medium")
-        console.log(word);
+      
     }
     else {
         let hard = ["Difficult", "Avalanche", "Verbatim", "Paragraph"];
         ran = Math.floor(Math.random() * hard.length);
         word = hard[ran];
-        console.log("Hard");
     }
 
     //Hide Game Option and Show Game
     document.getElementById("center").style.display = "none";
     document.getElementById("center-1").style.display = "flex";
 
-    //Change word to "_"
     const underscores = "_ ".repeat(word.length);
     document.getElementById("game-word").innerHTML = underscores;
 
 
-    const gameButton = document.querySelectorAll(".key-button");
-
-    let currentWord = underscores.split(" ");
-    
-    var correct = 0;
-    var wrong = 0;
-
+    currentWord = underscores.split(" ");
     document.getElementById("game-sticks").innerHTML = gameSticks[0];
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const gameButton = document.querySelectorAll(".key-button");
 
     gameButton.forEach(button => {
         button.addEventListener('click', (event) => {
             user_choice = event.target.textContent;
             button.disabled = true;
-            console.log("right");
             if (word.toLowerCase().includes(user_choice.toLowerCase())) {
                 for (let i = 0; i < word.length; i++ ) {
                     if (word[i].toLowerCase() === user_choice.toLowerCase()) {
                         currentWord[i] = user_choice;
                         finalWord = currentWord.join(' ');
-                        document.getElementById("game-word").innerHTML = finalWord;
+                        document.getElementById("game-word").innerHTML = finalWord
                         correct += 1;
-                        console.log(correct);
                     }
                 }
-            
             }
             else {
                 wrong += 1
+                console.log(wrong);
                 document.getElementById("game-sticks").innerHTML = gameSticks[wrong];
 
-            }
-            
-    
-            if (correct === word.length) {
-                document.getElementById("center-1").style.display = "none";
-                document.getElementById("winner").style.display = "block";
+                    if (wrong === 6) {
+                    document.getElementById("overlay").style.display = "block";
+                    document.getElementById("losePopup").style.display = "flex";
 
+                }
+            }
+        
+            if (correct === word.length) {
+                document.getElementById("overlay").style.display = "block";
+                document.getElementById("winPopup").style.display = "flex";
 
                 confetti({
                     particleCount: 100,
                     spread: 70,
                     origin: { y: 0.6 },
                 });
-            }
-    
+            } 
+
         });
-
     });
+});
 
-   
 
+function playAgain() {
+    document.getElementById("center").style.display = "flex";
+    document.getElementById("center-1").style.display = "none";  
+    document.getElementById("overlay").style.display  = "none";
+    document.getElementById("winPopup").style.display = "none";   
+    document.getElementById("losePopup").style.display = "none";
+    correct = 0;
+    wrong = 0;
+    const gameButton = document.querySelectorAll(".key-button");
+
+    gameButton.forEach(button => {
+        button.disabled = false; 
+    })
 }
+
+
 
