@@ -7,7 +7,7 @@
             <div id="log-content">
                 <div id="log-content-1">Name</div>
                 <div id="log-content-1">High Score</div>
-                <a id="log-content-1" href="{% url 'logout' %}">Logout</a>
+                <a id="log-content-1" href="{% url 'logout' %}">Main Menu</a>
             </div>
             <div style="justify-self: center;">
                 <button id="easy" value="easy" class="game" onclick="game_mode(this.value)">Easy</button>
@@ -34,7 +34,7 @@
             </ul>
             <div>
                 <button id="rules-button" onclick="next()">Play</button>
-                <button id="rules-button" onclick="">Menu</button>
+                <button id="rules-button" onclick="menu()">Menu</button>
             </div>
         </div>
     </div>
@@ -44,43 +44,43 @@
             <div id="game-top">
                 <div style="padding-left: 20px;">Name</div>
                 <div style="font-size: 100px; color: white">Hangman</div>
-                <a  style="padding-right: 20px; text-decoration: none;" href="{% url 'logout' %}">Logout</a>
+                <button  id="gamebox-button" onclick="menu()">Main Menu</button>
             </div>
             <div style="display: flex;">
                 <div id="game-left">    
                     <div id="game-word"></div>
                     <div id="game-keys">
                         <div id="game-column" style="padding: 7px;">
-                            <button class="key-button">A</button>
-                            <button class="key-button">B</button>
-                            <button class="key-button">C</button>
-                            <button  class="key-button">D</button>
-                            <button  class="key-button">E</button>
-                            <button  class="key-button">F</button>
-                            <button  class="key-button">G</button>
-                            <button  class="key-button">H</button>
-                            <button  class="key-button">I</button>
+                            <button data-key="A" class="key-button">A</button>
+                            <button data-key="B" class="key-button">B</button>
+                            <button data-key="C" class="key-button">C</button>
+                            <button data-key="D" class="key-button">D</button>
+                            <button data-key="E" class="key-button">E</button>
+                            <button data-key="F" class="key-button">F</button>
+                            <button data-key="G" class="key-button">G</button>
+                            <button data-key="H" class="key-button">H</button>
+                            <button data-key="I" class="key-button">I</button>
                         </div>
                         <div id="game-column" style="padding: 7px;">
-                        <button  class="key-button">J</button>
-                        <button  class="key-button">K</button>
-                        <button  class="key-button">L</button>
-                        <button  class="key-button">M</button>
-                        <button  class="key-button">N</button>
-                        <button  class="key-button">O</button>
-                        <button  class="key-button">P</button>
-                        <button  class="key-button">Q</button>
-                        <button  class="key-button">R</button>
+                        <button data-key="J" class="key-button">J</button>
+                        <button data-key="K" class="key-button">K</button>
+                        <button data-key="L" class="key-button">L</button>
+                        <button data-key="M" class="key-button">M</button>
+                        <button data-key="N" class="key-button">N</button>
+                        <button data-key="O" class="key-button">O</button>
+                        <button data-key="P" class="key-button">P</button>
+                        <button data-key="Q" class="key-button">Q</button>
+                        <button data-key="R" class="key-button">R</button>
                         </div>
                         <div id="game-column" style="padding: 7px;">
-                            <button  class="key-button">S</button>
-                            <button  class="key-button">T</button>
-                            <button  class="key-button">U</button>
-                            <button  class="key-button">V</button>
-                            <button  class="key-button">W</button>
-                            <button  class="key-button">X</button>
-                            <button  class="key-button">Y</button>
-                            <button  class="key-button">Z</button>
+                            <button data-key="S" class="key-button">S</button>
+                            <button data-key="T" class="key-button">T</button>
+                            <button data-key="U" class="key-button">U</button>
+                            <button data-key="V" class="key-button">V</button>
+                            <button data-key="W" class="key-button">W</button>
+                            <button data-key="X" class="key-button">X</button>
+                            <button data-key="Y" class="key-button">Y</button>
+                            <button data-key="Z" class="key-button">Z</button>
                         </div> 
                     </div>      
                 </div>

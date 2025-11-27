@@ -132,6 +132,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const gameButton = document.querySelectorAll(".key-button");
 
+
+    let pressedKeys = []
+
+    document.addEventListener('keydown', function(event) {
+        user_choice = event.key;
+        
+        console.log(user_choice);
+        pressedKeys.push(user_choice)
+    
+    });
+
+ 
+   
+
+
+
     gameButton.forEach(button => {
         button.addEventListener('click', (event) => {
             user_choice = event.target.textContent;
@@ -175,6 +191,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
+
 function playAgain() {
     console.log(correct);
     
@@ -201,6 +219,8 @@ function playAgain() {
 
 function menu() {
     document.getElementById("center").style.display = "flex";
+    document.getElementById("login-form").style.display = "block";
+    document.getElementById("game-rules").style.display = "none";
     document.getElementById("center-1").style.display = "none";
     document.getElementById("overlay").style.display  = "none";
      document.getElementById("winPopup").style.display = "none";   
@@ -218,4 +238,6 @@ function menu() {
     })
 
 }
+
+
 

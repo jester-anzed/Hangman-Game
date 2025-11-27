@@ -150,6 +150,7 @@ ul {
 #game-box {
     width: 80%;
     height: 80%;
+    padding: 20px;
     border: 2px solid black;
 }
 
@@ -210,7 +211,7 @@ ul {
     cursor: pointer;
 }
 
-.key-button:hover, #losePopup button:hover, #winPopup button:hover, #rules-button:hover {
+.key-button:hover, #losePopup button:hover, #winPopup button:hover, #rules-button:hover, #gamebox-button:hover {
     background-color:  red;
 }
 
@@ -281,6 +282,17 @@ ul {
 
 
 }
+ #gamebox-button{
+    font-weight: bold;
+    font-size: 25px;
+    border: 1px;
+    width: 160px;
+    height: 30px;
+    background-color: dodgerblue;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+ }
 
 body {
     margin: 0px;
