@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block body %}
-    <div id="center" style="display: none;">
+    <div id="center">
         <div id="login-form" style="height: 500px; width: 700px;">
             <div id="log-content">
                 <div id="log-content-1">Name</div>
@@ -10,15 +10,15 @@
                 <a id="log-content-1" href="{% url 'logout' %}">Logout</a>
             </div>
             <div style="justify-self: center;">
-                <button id="easy" value="easy" onclick="game_mode(this.value)">Easy</button>
-                <button id="medium" value="medium" onclick="game_mode(this.value)">Medium</button>
-                <button id="hard" value="hard"  onclick="game_mode(this.value)">Hard</button>
+                <button id="easy" value="easy" class="game" onclick="game_mode(this.value)">Easy</button>
+                <button id="medium" value="medium" class="game" onclick="game_mode(this.value)">Medium</button>
+                <button id="hard" value="hard" class="game" onclick="game_mode(this.value)">Hard</button>
             </div>
         </div>
     
     </div>
 
-    <div id="center-1" style="display: flex;">
+    <div id="center-1" style="display: none;">
         <div id="game-box">
             <div id="game-top">
                 <div style="padding-left: 20px;">Name</div>
@@ -73,7 +73,7 @@
                     <button id="closePopup" onclick="playAgain()">Play Again</button>
                     <button id="closePopup" onclick="menu()">Main Menu</button>
                 </div>
-                <div id="losePopup" style="display: block";>
+                <div id="losePopup">
                     <h1>Sorry, You Lost!</h1>
                     <button id="closePopup" onclick="playAgain()">Play Again</button>
                     <button id="closePopup" onclick="menu()">Main Menu</button>

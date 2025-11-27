@@ -70,10 +70,13 @@ let gameSticks = [
 
 `,
 ]
+
 let wrong = 0;
 let correct = 0;
 let currentWord = ""
 let word = ""
+
+let currentMode = ""
 
 function game_mode(mode) {
     //Mode bassed on what the user clicked
@@ -81,18 +84,27 @@ function game_mode(mode) {
         let easy = ["Noob", "Value", "Dog", "Cat"];
         ran = Math.floor(Math.random() * easy.length);
         word = easy[ran];
+        currentMode = "easy"
+        console.log(currentMode);
+        console.log(word);
     
     }
     else if (mode === "medium") {
         let medium = ["Hangman", "Random", "Edited", "Course"];
         ran = Math.floor(Math.random() * medium.length);
         word = medium[ran];
+        currentMode = "medium"
+        console.log(currentMode);
+        console.log(word);
       
     }
     else {
         let hard = ["Difficult", "Avalanche", "Verbatim", "Paragraph"];
         ran = Math.floor(Math.random() * hard.length);
         word = hard[ran];
+        currentMode = "hard"
+        console.log(currentMode);
+        console.log(word);
     }
 
     //Hide Game Option and Show Game
@@ -123,12 +135,13 @@ document.addEventListener("DOMContentLoaded", () => {
                         finalWord = currentWord.join(' ');
                         document.getElementById("game-word").innerHTML = finalWord
                         correct += 1;
+                        console.log("Correct", correct);
                     }
                 }
             }
             else {
                 wrong += 1
-                console.log(wrong);
+                console.log("Wrong", wrong);
                 document.getElementById("game-sticks").innerHTML = gameSticks[wrong];
 
                     if (wrong === 6) {
@@ -140,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
             if (correct === word.length) {
                 document.getElementById("overlay").style.display = "block";
-                document.getElementById("winPopup").style.display = "flex";
+                document.getElementById("winPopup").style.display = "block";
 
                 confetti({
                     particleCount: 100,
@@ -155,14 +168,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 function playAgain() {
+    console.log(correct);
+    
+
     document.getElementById("center-1").style.display = "flex";  
     document.getElementById("overlay").style.display  = "none";
     document.getElementById("winPopup").style.display = "none";   
     document.getElementById("losePopup").style.display = "none";
+    
     correct = 0;
     wrong = 0;
     currentWord = "";
     word = "";
+    game_mode(currentMode)
+
 
     const gameButton = document.querySelectorAll(".key-button");
 
@@ -173,9 +192,21 @@ function playAgain() {
 
 function menu() {
     document.getElementById("center").style.display = "flex";
+    document.getElementById("center-1").style.display = "none";
     document.getElementById("overlay").style.display  = "none";
      document.getElementById("winPopup").style.display = "none";   
      document.getElementById("losePopup").style.display = "none";
+
+    correct = 0;
+    wrong = 0;
+    currentWord = "";
+    word = "";
+
+    const gameButton = document.querySelectorAll(".key-button");
+
+    gameButton.forEach(button => {
+        button.disabled = false; 
+    })
 
 }
 
