@@ -3,7 +3,7 @@
 
 {% block body %}
     <div id="center">
-        <div id="login-form" style="height: 500px; width: 700px;">
+        <div id="login-form">
             <div id="log-content">
                 <div id="log-content-1">Name</div>
                 <div id="log-content-1">High Score</div>
@@ -15,7 +15,28 @@
                 <button id="hard" value="hard" class="game" onclick="game_mode(this.value)">Hard</button>
             </div>
         </div>
-    
+        <div id="game-rules" style="display: none;">
+            <h1>Game Rules</h1>
+            <ul>
+                <li>Players have 6 lives. -1 life per wrong guess.</li>
+                <li>2 minutes to guess the word</li>
+                <li>If the guess is correct, the letter will show on it's correct position on the dashes</li>
+            </ul>
+            <h1>Scoring Rules</h1>
+            <ul>
+                <li>20 points per correct guess.</li>
+                <li>-10 points per wrong guess.</li>
+                <li>If player correctly guess the word +500 bonus points</li>
+                <li>If player solves the word before the allotted time then 
+                    remaining time will be multiplied by 10 and will be added as bonus score.
+                    (i.e: remaining time = 1:25 (85 * 10) = 850 bonus points)
+                </li>
+            </ul>
+            <div>
+                <button id="rules-button" onclick="next()">Play</button>
+                <button id="rules-button" onclick="">Menu</button>
+            </div>
+        </div>
     </div>
 
     <div id="center-1" style="display: none;">

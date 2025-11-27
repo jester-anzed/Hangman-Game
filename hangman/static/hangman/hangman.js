@@ -108,6 +108,13 @@ function game_mode(mode) {
     }
 
     //Hide Game Option and Show Game
+    document.getElementById("login-form").style.display = "none";
+    document.getElementById("game-rules").style.display = "block";
+
+
+}
+
+function next() {
     document.getElementById("center").style.display = "none";
     document.getElementById("center-1").style.display = "flex";
 
@@ -117,6 +124,7 @@ function game_mode(mode) {
 
     currentWord = underscores.split(" ");
     document.getElementById("game-sticks").innerHTML = gameSticks[0];
+
 }
 
 
@@ -181,6 +189,7 @@ function playAgain() {
     currentWord = "";
     word = "";
     game_mode(currentMode)
+    next()
 
 
     const gameButton = document.querySelectorAll(".key-button");

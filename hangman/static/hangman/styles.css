@@ -36,15 +36,33 @@
 }
 
 
-#login-form {
+#login-form, #game-rules {
     padding: 20px;
     border: 1px solid gray;
     text-align: center;
-    width:  500px;
-    height: 350px;
+    width:  45%;
+    height: 50%;
     border-radius: 20px;
     background-color: #424242
 }
+
+#game-rules {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+}
+
+h1 {
+    color: white;
+}
+
+ul {
+    text-align: left;
+    color: white;
+    font-size: 20px;
+
+}
+    
 
 #login-reg {
     display: flex;
@@ -192,7 +210,7 @@
     cursor: pointer;
 }
 
-.key-button:hover, #losePopup button:hover, #winPopup button:hover {
+.key-button:hover, #losePopup button:hover, #winPopup button:hover, #rules-button:hover {
     background-color:  red;
 }
 
@@ -247,4 +265,23 @@
   cursor: pointer;
   margin: 40px;
 
+}
+
+#rules-button {
+    margin: 20px;
+    height: 50px;
+    width: 100px;
+    font-weight: bold;
+    font-size: 25px;
+    border: 1px;
+    border-radius: 10px;
+    background-color: gray;
+    color: white;
+    cursor: pointer;
+
+
+}
+
+body {
+    margin: 0px;
 }
