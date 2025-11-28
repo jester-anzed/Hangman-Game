@@ -75,7 +75,7 @@ let wrong = 0;
 let correct = 0;
 let currentWord = ""
 let word = ""
-
+let pressedKeys = []
 let currentMode = ""
 
 function game_mode(mode) {
@@ -132,21 +132,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const gameButton = document.querySelectorAll(".key-button");
 
-
-    let pressedKeys = []
-
     document.addEventListener('keydown', function(event) {
-        user_choice = event.key;
+        user_choice = event.key.toUpperCase();
+        let keyButton = document.querySelector(`[data-key="${user_choice}"]`)
+        keyButton.disabled = true;
         
-        console.log(user_choice);
-        pressedKeys.push(user_choice)
-    
+        if (!pressedKeys.includes(user_choice)) {
+            pressedKeys.push(user_choice);
+        } else {
+            return;
+        }
+
+        if (word.toUpperCase().includes(user_choice)) {
+            for (let i = 0; i <word.length; i++) {
+                if (word[i].toUpperCase() === user_choice) {
+                    currentWord[i] = user_choice;
+                    console.log(user_choice);
+                    finalWord = currentWord.join(' ');
+                    document.getElementById("game-word").innerHTML = finalWord
+                    correct += 1;
+                    console.log("correct", correct)
+                }
+            }
+        checkWin(correct);
+        } else {     
+                console.log("wrong", wrong);
+                wrong += 1;
+                document.getElementById("game-sticks").innerHTML = gameSticks[wrong];
+                checkWin(wrong);
+            }
+        console.log(pressedKeys);
     });
-
- 
-   
-
-
 
     gameButton.forEach(button => {
         button.addEventListener('click', (event) => {
@@ -158,39 +174,44 @@ document.addEventListener("DOMContentLoaded", () => {
                         currentWord[i] = user_choice;
                         finalWord = currentWord.join(' ');
                         document.getElementById("game-word").innerHTML = finalWord
-                        correct += 1;
+                        correct += 1
                         console.log("Correct", correct);
+                    
                     }
                 }
+            checkWin(correct);
             }
             else {
                 wrong += 1
                 console.log("Wrong", wrong);
                 document.getElementById("game-sticks").innerHTML = gameSticks[wrong];
-
-                    if (wrong === 6) {
-                    document.getElementById("overlay").style.display = "block";
-                    document.getElementById("losePopup").style.display = "block";
-
-                }
+                checkWin(wrong);
             }
+        })
         
-            if (correct === word.length) {
-                document.getElementById("overlay").style.display = "block";
-                document.getElementById("winPopup").style.display = "block";
-
-                confetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.6 },
-                });
-            } 
-
-        });
     });
+
+
+    
 });
 
+function checkWin(counter) {
+    if (counter === correct && counter === word.length) {
+        document.getElementById("overlay").style.display = "block";
+        document.getElementById("winPopup").style.display = "block";
 
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+        });
+        
+    } else if (counter === wrong && counter === 6) {
+        document.getElementById("overlay").style.display = "block";
+        document.getElementById("losePopup").style.display = "block";
+    }
+
+}
 
 
 function playAgain() {
@@ -202,6 +223,7 @@ function playAgain() {
     document.getElementById("winPopup").style.display = "none";   
     document.getElementById("losePopup").style.display = "none";
     
+    pressedKeys = []
     correct = 0;
     wrong = 0;
     currentWord = "";
@@ -230,6 +252,7 @@ function menu() {
     wrong = 0;
     currentWord = "";
     word = "";
+    pressedKeys = []
 
     const gameButton = document.querySelectorAll(".key-button");
 
