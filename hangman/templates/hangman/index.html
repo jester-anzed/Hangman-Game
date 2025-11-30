@@ -5,7 +5,7 @@
     <div id="center">
         <div id="login-form">
             <div id="log-content">
-                <div id="log-content-1">Name</div>
+                <div id="log-content-1">{{ name }}</div>
                 <div id="log-content-1">High Score</div>
                 <a id="log-content-1" href="{% url 'logout' %}">Main Menu</a>
             </div>
@@ -39,10 +39,14 @@
         </div>
     </div>
 
-    <div id="center-1" style="display: none;">
+    <div id="center-1" style="display: flex;">
         <div id="game-box">
             <div id="game-top">
-                <div style="padding-left: 20px;">Name</div>
+                <div style="padding-left: 20px;">
+                    <div>{{ name }}</div>
+                    <div id="score">Score: 0 </div>
+                    <div id="time">Time: </div>
+                </div>
                 <div style="font-size: 100px; color: white">Hangman</div>
                 <button  id="gamebox-button" onclick="menu()">Main Menu</button>
             </div>
@@ -91,11 +95,13 @@
                 <div id="overlay"></div>
                 <div id="winPopup">
                     <h1>Congratulations! You Won!</h1>
+                    <div id="Final"></div>
                     <button id="closePopup" onclick="playAgain()">Play Again</button>
                     <button id="closePopup" onclick="menu()">Main Menu</button>
                 </div>
                 <div id="losePopup">
                     <h1>Sorry, You Lost!</h1>
+                    <div id="Final"></div>
                     <button id="closePopup" onclick="playAgain()">Play Again</button>
                     <button id="closePopup" onclick="menu()">Main Menu</button>
                 </div>

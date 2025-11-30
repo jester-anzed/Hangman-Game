@@ -10,7 +10,11 @@ from .models import User
 # Create your views here.
 def index(request):
     if request.user.is_authenticated:
-        return render(request, "hangman/index.html")
+        name = request.user
+        return render(request, "hangman/index.html", {
+            "name": name,
+        })
+
     else:
         return render(request, "hangman/login.html")
 

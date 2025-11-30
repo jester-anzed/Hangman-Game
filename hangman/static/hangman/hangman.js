@@ -73,10 +73,13 @@ let gameSticks = [
 
 let wrong = 0;
 let correct = 0;
+let score = 0;
 let currentWord = ""
 let word = ""
 let pressedKeys = []
 let currentMode = ""
+let sec = 5;
+
 
 function game_mode(mode) {
     //Mode bassed on what the user clicked
@@ -85,8 +88,6 @@ function game_mode(mode) {
         ran = Math.floor(Math.random() * easy.length);
         word = easy[ran];
         currentMode = "easy"
-        console.log(currentMode);
-        console.log(word);
     
     }
     else if (mode === "medium") {
@@ -94,8 +95,6 @@ function game_mode(mode) {
         ran = Math.floor(Math.random() * medium.length);
         word = medium[ran];
         currentMode = "medium"
-        console.log(currentMode);
-        console.log(word);
       
     }
     else {
@@ -103,8 +102,7 @@ function game_mode(mode) {
         ran = Math.floor(Math.random() * hard.length);
         word = hard[ran];
         currentMode = "hard"
-        console.log(currentMode);
-        console.log(word);
+      
     }
 
     //Hide Game Option and Show Game
@@ -128,8 +126,23 @@ function next() {
 }
 
 
-document.addEventListener("DOMContentLoaded", () => {
 
+function time() {
+    sec-=1;
+    if (sec === 0) {
+        document.getElementById("overlay").style.display = "block";
+        document.getElementById("losePopup").style.display = "block";
+        document.getElementById("Final").innerHTML = `Final Score: ${score}`;
+        clearInterval(timer);
+    }
+    document.getElementById("time").innerHTML = `Time: ${sec}`;
+}
+
+const timer = setInterval(time, 1000);
+
+document.addEventListener("DOMContentLoaded", () => {
+    
+    
     const gameButton = document.querySelectorAll(".key-button");
 
     document.addEventListener('keydown', function(event) {
@@ -147,21 +160,20 @@ document.addEventListener("DOMContentLoaded", () => {
             for (let i = 0; i <word.length; i++) {
                 if (word[i].toUpperCase() === user_choice) {
                     currentWord[i] = user_choice;
-                    console.log(user_choice);
                     finalWord = currentWord.join(' ');
                     document.getElementById("game-word").innerHTML = finalWord
+                    document.getElementById("score").innerHTML = `Score: ${score += 20}`;
                     correct += 1;
-                    console.log("correct", correct)
+               
                 }
             }
         checkWin(correct);
         } else {     
-                console.log("wrong", wrong);
                 wrong += 1;
                 document.getElementById("game-sticks").innerHTML = gameSticks[wrong];
+                document.getElementById("score").innerHTML = `Score: ${score -= 10}`;
                 checkWin(wrong);
             }
-        console.log(pressedKeys);
     });
 
     gameButton.forEach(button => {
@@ -175,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         finalWord = currentWord.join(' ');
                         document.getElementById("game-word").innerHTML = finalWord
                         correct += 1
-                        console.log("Correct", correct);
+
                     
                     }
                 }
@@ -183,7 +195,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             else {
                 wrong += 1
-                console.log("Wrong", wrong);
                 document.getElementById("game-sticks").innerHTML = gameSticks[wrong];
                 checkWin(wrong);
             }
@@ -199,7 +210,8 @@ function checkWin(counter) {
     if (counter === correct && counter === word.length) {
         document.getElementById("overlay").style.display = "block";
         document.getElementById("winPopup").style.display = "block";
-
+        document.getElementById("score").innerHTML = `Score: ${score += 500}`;
+        document.getElementById("Final").innerHTML = `Final Score: ${score}`;
         confetti({
             particleCount: 100,
             spread: 70,
@@ -209,25 +221,32 @@ function checkWin(counter) {
     } else if (counter === wrong && counter === 6) {
         document.getElementById("overlay").style.display = "block";
         document.getElementById("losePopup").style.display = "block";
+        document.getElementById("Final").innerHTML = `Final Score: ${score}`;
     }
 
 }
 
 
 function playAgain() {
-    console.log(correct);
-    
-
     document.getElementById("center-1").style.display = "flex";  
     document.getElementById("overlay").style.display  = "none";
     document.getElementById("winPopup").style.display = "none";   
     document.getElementById("losePopup").style.display = "none";
+    document.getElementById("score").innerHTML = `Score: ${score = 0}`;
     
+    sec = 5;
+    setInterval(time, 1000)
     pressedKeys = []
     correct = 0;
     wrong = 0;
     currentWord = "";
     word = "";
+    
+    
+
+    console.log(score);
+    console.log(correct);
+    console.log(wrong);
     game_mode(currentMode)
     next()
 
@@ -239,19 +258,22 @@ function playAgain() {
     })
 }
 
+
+
 function menu() {
     document.getElementById("center").style.display = "flex";
     document.getElementById("login-form").style.display = "block";
     document.getElementById("game-rules").style.display = "none";
     document.getElementById("center-1").style.display = "none";
     document.getElementById("overlay").style.display  = "none";
-     document.getElementById("winPopup").style.display = "none";   
-     document.getElementById("losePopup").style.display = "none";
+    document.getElementById("winPopup").style.display = "none";   
+    document.getElementById("losePopup").style.display = "none";
 
     correct = 0;
     wrong = 0;
     currentWord = "";
     word = "";
+    score = 0;
     pressedKeys = []
 
     const gameButton = document.querySelectorAll(".key-button");
