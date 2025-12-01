@@ -119,7 +119,7 @@ function time() {
         clearInterval(timeInterval);
         document.getElementById("overlay").style.display = "block";
         document.getElementById("losePopup").style.display = "block";
-        document.getElementById("Final").innerHTML = `Final Score: ${score}`;
+        document.getElementById("finalLose").innerHTML = `Final Score: ${score}`;
     } 
     document.getElementById("time").innerHTML = `Time: ${sec}`;
 }
@@ -212,7 +212,7 @@ function checkWin(counter) {
         document.getElementById("overlay").style.display = "block";
         document.getElementById("winPopup").style.display = "block";
         document.getElementById("score").innerHTML = `Score: ${score += 500 + bonus}`;
-        document.getElementById("Final").innerHTML = `Final Score: ${score}`;
+        document.getElementById("finalWin").innerHTML = `Final Score: ${score}`;
         confetti({
             particleCount: 100,
             spread: 70,
@@ -220,9 +220,16 @@ function checkWin(counter) {
         });
         
     } else if (counter === wrong && counter === 6) {
+        clearInterval(timeInterval);
         document.getElementById("overlay").style.display = "block";
         document.getElementById("losePopup").style.display = "block";
-        document.getElementById("Final").innerHTML = `Final Score: ${score}`;
+        
+        if (score < 0) {
+            document.getElementById("finalLose").innerHTML = "Yikes!";
+        } else {
+            document.getElementById("finalLose").innerHTML = `Final Score: ${score}`;
+        }
+     
     }
 
 }
