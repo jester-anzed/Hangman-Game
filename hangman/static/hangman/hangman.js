@@ -78,8 +78,8 @@ let currentWord = ""
 let word = ""
 let pressedKeys = []
 let currentMode = ""
-let timeInteval = ""
-let sec = 5;
+let timeInterval = ""
+let sec = 30;
 
 
 function game_mode(mode) {
@@ -116,11 +116,11 @@ function game_mode(mode) {
 function time() {   
     sec -= 1;
     if( sec === 0) {
-        clearInterval(timeInteval);
+        clearInterval(timeInterval);
         document.getElementById("overlay").style.display = "block";
         document.getElementById("losePopup").style.display = "block";
         document.getElementById("Final").innerHTML = `Final Score: ${score}`;
-    }
+    } 
     document.getElementById("time").innerHTML = `Time: ${sec}`;
 }
 
@@ -135,13 +135,9 @@ function next() {
     currentWord = underscores.split(" ");
     document.getElementById("game-sticks").innerHTML = gameSticks[0];
 
-    timeInteval = setInterval(time, 1000);
+    timeInterval = setInterval(time, 1000);
 
 }
-
-
-
-document.getElementById("time").innerHTML = sec;
 
 document.addEventListener("DOMContentLoaded", () => {
     const gameButton = document.querySelectorAll(".key-button");
@@ -209,9 +205,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function checkWin(counter) {
     if (counter === correct && counter === word.length) {
+        clearInterval(timeInterval);
+        
+        let bonus = sec * 10;
+    
         document.getElementById("overlay").style.display = "block";
         document.getElementById("winPopup").style.display = "block";
-        document.getElementById("score").innerHTML = `Score: ${score += 500}`;
+        document.getElementById("score").innerHTML = `Score: ${score += 500 + bonus}`;
         document.getElementById("Final").innerHTML = `Final Score: ${score}`;
         confetti({
             particleCount: 100,
@@ -229,25 +229,22 @@ function checkWin(counter) {
 
 
 function playAgain() {
+    clearInterval(timeInterval);
     document.getElementById("center-1").style.display = "flex";  
     document.getElementById("overlay").style.display  = "none";
     document.getElementById("winPopup").style.display = "none";   
     document.getElementById("losePopup").style.display = "none";
     document.getElementById("score").innerHTML = `Score: ${score = 0}`;
     
-    sec = 5;
+    sec = 30;
     document.getElementById("time").innerHTML = `Time: ${sec}`;
     pressedKeys = []
     correct = 0;
     wrong = 0;
     currentWord = "";
     word = "";
+
     
-    
-    console.log(sec);
-    console.log(score);
-    console.log(correct);
-    console.log(wrong);
     game_mode(currentMode)
     next()
 
@@ -262,6 +259,7 @@ function playAgain() {
 
 
 function menu() {
+    clearInterval(timeInterval);
     document.getElementById("center").style.display = "flex";
     document.getElementById("login-form").style.display = "block";
     document.getElementById("game-rules").style.display = "none";
@@ -270,13 +268,14 @@ function menu() {
     document.getElementById("winPopup").style.display = "none";   
     document.getElementById("losePopup").style.display = "none";
 
-    sec = 5
+    sec = 30;
     document.getElementById("time").innerHTML = `Time: ${sec}`;
     correct = 0;
     wrong = 0;
     currentWord = "";
     word = "";
     score = 0;
+    document.getElementById("score").innerHTML = `Score: ${score = 0}`;
     pressedKeys = []
 
     const gameButton = document.querySelectorAll(".key-button");
