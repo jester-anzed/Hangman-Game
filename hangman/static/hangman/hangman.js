@@ -219,10 +219,17 @@ function checkWin(counter) {
             spread: 70,
             origin: { y: 0.6 },
         });
-        scoreData = {
-            userScore: score,
-        }
-        console.log(scoreData);
+        fetch('/score', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userScore: score }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+        })
         
     } else if (counter === wrong && counter === 6) {
         clearInterval(timeInterval);
@@ -233,27 +240,27 @@ function checkWin(counter) {
             document.getElementById("finalLose").innerHTML = "<h2>No Points. Yikes!</h2>";
         } else {
             document.getElementById("finalLose").innerHTML = `<h2>Final Score: ${score}</h2>`;
-            scoreData = {
-                userScore: score,
-            }
-            console.log(scoreData);
-        }
-     
+            fetch('score', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userScore: score }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                })
+                }
     }
 
 }
- 
-fetch('score', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ userScore: score }),
-})
+
+fetch('/scoreGet')
 .then(response => response.json())
 .then(data => {
-    console.log('Success:', data);
-})
+    console.log(data);
+});
 
 
 function playAgain() {

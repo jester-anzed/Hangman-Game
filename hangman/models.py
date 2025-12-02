@@ -12,3 +12,5 @@ class Score(models.Model):
     score = models.IntegerField()
     date = models.DateTimeField(default=timezone.now)
     
+    def __str__(self):
+        return f"{self.name} - {self.score}"

@@ -21,6 +21,17 @@ def index(request):
         return render(request, "hangman/login.html")
 
 
+
+@csrf_exempt
+def scoreGet(request):
+    score = Score.objects.all().order_by('-score')
+
+    score_list = [{"score": s.score, "user": s.name.username} for s in score]
+
+    return JsonResponse({
+        "Score": score_list,
+    })
+
 @csrf_exempt
 def scoreRequest(request):
     if request.method == "POST":
@@ -28,24 +39,16 @@ def scoreRequest(request):
         data = json.loads(request.body)
 
         user_score = data.get('userScore')
+        print(data)
+        print(user_score)
     
         Score.objects.create(score=user_score, name=name)
 
         return JsonResponse({
-            "Score": user_score,
-            "name": name
+            "name": request.user.username,
+            "score": user_score,
         })
-    else:
-        score = Score.objects.all()
-        
-        return JsonResponse({
-            "Score": score,
-        })
-
-
-
-
-
+    
 
 def login_view(request):
     if request.method == "POST":
