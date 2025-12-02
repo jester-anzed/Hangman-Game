@@ -256,13 +256,23 @@ function checkWin(counter) {
 
 }
 
-fetch('/scoreGet')
-.then(response => response.json())
-.then(data => {
-    console.log(data);
-});
+function highscore() {
+    document.getElementById("game-mode").style.display = "none";
+    fetch('/scoreGet')
+    .then(response => response.json())
+    .then(data => {
 
+        score = []
 
+        for(let i = 0; i < data.Score.length; i++) {
+            x = `${i + 1} ${data.Score[i].user} ${data.Score[i].score}`
+            score.push(x)
+        }
+        console.log(score);
+        document.getElementById("popup").innerHTML = score;
+    });
+
+}
 function playAgain() {
     clearInterval(timeInterval);
     document.getElementById("center-1").style.display = "flex";  

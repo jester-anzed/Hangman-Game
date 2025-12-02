@@ -253,6 +253,8 @@ ul {
   text-align: center;
 }
 
+
+
 #winPopup, #losePopup h1 {
   color: white; /* Green for win message */
 }
