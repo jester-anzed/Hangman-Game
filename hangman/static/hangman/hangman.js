@@ -80,6 +80,7 @@ let pressedKeys = []
 let currentMode = ""
 let timeInterval = ""
 let sec = 30;
+let scoreData = {}
 
 
 function game_mode(mode) {
@@ -212,27 +213,47 @@ function checkWin(counter) {
         document.getElementById("overlay").style.display = "block";
         document.getElementById("winPopup").style.display = "block";
         document.getElementById("score").innerHTML = `Score: ${score += 500 + bonus}`;
-        document.getElementById("finalWin").innerHTML = `Final Score: ${score}`;
+        document.getElementById("finalWin").innerHTML = `<h2>Final Score: ${score}</h2>`;
         confetti({
             particleCount: 100,
             spread: 70,
             origin: { y: 0.6 },
         });
+        scoreData = {
+            userScore: score,
+        }
+        console.log(scoreData);
         
     } else if (counter === wrong && counter === 6) {
         clearInterval(timeInterval);
         document.getElementById("overlay").style.display = "block";
         document.getElementById("losePopup").style.display = "block";
         
-        if (score < 0) {
-            document.getElementById("finalLose").innerHTML = "Yikes!";
+        if (score <= 0) {
+            document.getElementById("finalLose").innerHTML = "<h2>No Points. Yikes!</h2>";
         } else {
-            document.getElementById("finalLose").innerHTML = `Final Score: ${score}`;
+            document.getElementById("finalLose").innerHTML = `<h2>Final Score: ${score}</h2>`;
+            scoreData = {
+                userScore: score,
+            }
+            console.log(scoreData);
         }
      
     }
 
 }
+ 
+fetch('score', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ userScore: score }),
+})
+.then(response => response.json())
+.then(data => {
+    console.log('Success:', data);
+})
 
 
 function playAgain() {

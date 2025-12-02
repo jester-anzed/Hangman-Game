@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.db import IntegrityError
+from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
+import json
 
-from .models import User
+from .models import User, Score
 
 
 # Create your views here.
@@ -17,6 +19,31 @@ def index(request):
 
     else:
         return render(request, "hangman/login.html")
+
+
+@csrf_exempt
+def scoreRequest(request):
+    if request.method == "POST":
+        name = request.user
+        data = json.loads(request.body)
+
+        user_score = data.get('userScore')
+    
+        Score.objects.create(score=user_score, name=name)
+
+        return JsonResponse({
+            "Score": user_score,
+            "name": name
+        })
+    else:
+        score = Score.objects.all()
+        
+        return JsonResponse({
+            "Score": score,
+        })
+
+
+
 
 
 
