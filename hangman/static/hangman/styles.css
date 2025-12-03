@@ -253,6 +253,13 @@ ul {
   text-align: center;
 }
 
+#highscore {
+    justify-self: center;
+    border: 1px solid black;
+    width: 50%;
+    font-size: 20px;
+
+}
 
 
 #winPopup, #losePopup h1 {

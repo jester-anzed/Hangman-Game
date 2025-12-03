@@ -258,18 +258,22 @@ function checkWin(counter) {
 
 function highscore() {
     document.getElementById("game-mode").style.display = "none";
+
     fetch('/scoreGet')
     .then(response => response.json())
     .then(data => {
-
-        score = []
-
-        for(let i = 0; i < data.Score.length; i++) {
-            x = `${i + 1} ${data.Score[i].user} ${data.Score[i].score}`
-            score.push(x)
-        }
-        console.log(score);
-        document.getElementById("popup").innerHTML = score;
+        const container = document.getElementById("highscore");
+        data.Score.forEach((score, index) => {
+            const element = document.createElement("div");
+            element.className = "highStyle";
+            element.innerHTML = `
+            <div>${index + 1}</div>
+            <div>${score.user}</div>
+            <div>${score.score}</div>
+            `;
+            container.appendChild(element);
+        }); 
+        
     });
 
 }
