@@ -256,13 +256,19 @@ function checkWin(counter) {
 
 }
 
+
+
+
 function highscore() {
-    document.getElementById("game-mode").style.display = "none";
+    document.getElementById("login-form").style.display = "none";
+    document.getElementById("highscore").style.display = "block";
+
+    let container = document.getElementById("scoreContainer").innerHTML = "";
 
     fetch('/scoreGet')
     .then(response => response.json())
     .then(data => {
-        const container = document.getElementById("highscore");
+        container = document.getElementById("scoreContainer");
         data.Score.forEach((score, index) => {
             const element = document.createElement("div");
             element.className = "highStyle";
@@ -273,7 +279,7 @@ function highscore() {
             `;
             container.appendChild(element);
         }); 
-        
+        console.log(container);
     });
 
 }
@@ -290,9 +296,9 @@ function playAgain() {
     pressedKeys = []
     correct = 0;
     wrong = 0;
+    container = "";
     currentWord = "";
     word = "";
-
     
     game_mode(currentMode)
     next()
@@ -306,16 +312,16 @@ function playAgain() {
 }
 
 
-
 function menu() {
+    console.log("working");
     clearInterval(timeInterval);
     document.getElementById("center").style.display = "flex";
     document.getElementById("login-form").style.display = "block";
-    document.getElementById("game-rules").style.display = "none";
     document.getElementById("center-1").style.display = "none";
     document.getElementById("overlay").style.display  = "none";
     document.getElementById("winPopup").style.display = "none";   
     document.getElementById("losePopup").style.display = "none";
+    document.getElementById("highscore").style.display = "none";
 
     sec = 30;
     document.getElementById("time").innerHTML = `Time: ${sec}`;

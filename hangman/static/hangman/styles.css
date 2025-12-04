@@ -211,7 +211,8 @@ ul {
     cursor: pointer;
 }
 
-.key-button:hover, #losePopup button:hover, #winPopup button:hover, #rules-button:hover, #gamebox-button:hover {
+.key-button:hover, #losePopup button:hover, #winPopup button:hover, #rules-button:hover, #gamebox-button:hover, 
+#score-button:hover {
     background-color:  red;
 }
 
@@ -255,12 +256,42 @@ ul {
 
 #highscore {
     justify-self: center;
-    border: 1px solid black;
-    width: 50%;
-    font-size: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #424242;
+    width: 45%;
+    height: 50%;
+    text-align: center;
 
 }
 
+.highStyle {
+    display: flex;
+}
+.highStyle > div {
+    width: 33%;
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+
+}
+
+#scoreButton {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#score-button {
+    height: 50px;
+    background: gray;
+    border: 1px;
+    cursor: pointer;
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    border-radius: 10px;
+}
 
 #winPopup, #losePopup h1 {
   color: white; /* Green for win message */

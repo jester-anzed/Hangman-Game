@@ -3,21 +3,30 @@
 
 {% block body %}
     <div id="center">
-        <div id="login-form">
+        <div id="login-form";>
             <div id="log-content">
                 <div id="log-content-1">{{ name }}</div>
                 <div id="log-content-1" onclick="highscore()">High Score</div>
                 <a id="log-content-1" href="{% url 'logout' %}">Logout</a>
             </div>
-            <div id="game-mode" style="justify-self: center; display: none;">
+            <div id="game-mode" style="justify-self: center;";>
                 <button id="easy" value="easy" class="game" onclick="game_mode(this.value)">Easy</button>
                 <button id="medium" value="medium" class="game" onclick="game_mode(this.value)">Medium</button>
                 <button id="hard" value="hard" class="game" onclick="game_mode(this.value)">Hard</button>
             </div>
-            <div id="highscore">
-            </div>
         </div>
-        <div id="game-rules" style="display: none;">
+        <div id="highscore" style="display: none;">
+            <div id="scoreButton">
+                <div style="width: 25%; text-align: left">
+                    <button id="score-button" onclick="menu()">Back</button>
+                </div>
+                <h1 style="width: 50%;">Score Rankings</h1>
+                <div style="width: 25%;"></div>
+            </div>
+            <div id="scoreContainer">
+            <div>
+        </div>
+        <div id="game-rules">
             <h1>Game Rules</h1>
             <ul>
                 <li>Players have 6 lives. -1 life per wrong guess.</li>
