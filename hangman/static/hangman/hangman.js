@@ -79,7 +79,7 @@ let word = ""
 let pressedKeys = []
 let currentMode = ""
 let timeInterval = ""
-let sec = 30;
+let sec = 10000;
 let scoreData = {}
 
 
@@ -109,7 +109,7 @@ function game_mode(mode) {
 
     //Hide Game Option and Show Game
     document.getElementById("login-form").style.display = "none";
-    document.getElementById("game-rules").style.display = "block";
+    const prac = document.getElementById("game-rules").style.display = "flex";
 
 
 }
@@ -273,7 +273,7 @@ function highscore() {
             const element = document.createElement("div");
             element.className = "highStyle";
             element.innerHTML = `
-            <div>${index + 1}</div>
+            <div>${index + 1}.</div>
             <div>${score.user}</div>
             <div>${score.score}</div>
             `;
@@ -322,6 +322,7 @@ function menu() {
     document.getElementById("winPopup").style.display = "none";   
     document.getElementById("losePopup").style.display = "none";
     document.getElementById("highscore").style.display = "none";
+    document.getElementById("game-rules").style.display = "none";
 
     sec = 30;
     document.getElementById("time").innerHTML = `Time: ${sec}`;
