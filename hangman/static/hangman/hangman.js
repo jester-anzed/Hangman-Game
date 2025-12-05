@@ -265,24 +265,37 @@ function highscore() {
 
     let container = document.getElementById("scoreContainer").innerHTML = "";
 
+    page = 2
+    displayScores(page);
+    
+}
+function displayScores(page) {
+    console.log("working");
+
+
     fetch('/scoreGet')
     .then(response => response.json())
     .then(data => {
         container = document.getElementById("scoreContainer");
-        data.Score.forEach((score, index) => {
+        counter = (page - 1) * 10;
+        value = 10;
+
+        while (counter < 10) { 
             const element = document.createElement("div");
             element.className = "highStyle";
             element.innerHTML = `
-            <div>${index + 1}.</div>
-            <div>${score.user}</div>
-            <div>${score.score}</div>
+            <div>${counter + 1}.</div>
+            <div>${data.Score[counter].score}</div>
+            <div>${data.Score[counter].user}</div>
             `;
             container.appendChild(element);
-        }); 
-        console.log(container);
+            counter += 1;
+        }
     });
 
 }
+
+
 function playAgain() {
     clearInterval(timeInterval);
     document.getElementById("center-1").style.display = "flex";  

@@ -1,7 +1,5 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
-from django.core.paginator import Paginator
-from django.views.generic import ListView
 from django.http import HttpResponseRedirect, JsonResponse
 from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt
@@ -11,34 +9,16 @@ import json
 from .models import User, Score
 
 
-class PostContent(ListView):
-    paginate_by = 10
-    model = Score
-
 # Create your views here.
 def index(request):
     if request.user.is_authenticated:
         name = request.user
-
-        score = Score.objects.all().order_by('-score')
-
-        paginator = Paginator(score, 10)
-        page_number = request.GET.get('page')
-        page_obj = paginator.get_page(page_number)
-        page_count = paginator.page_range
-
-
-
         return render(request, "hangman/index.html", {
             "name": name,
-            "count": page_count,
-            "page_obj": page_obj,
         })
 
     else:
         return render(request, "hangman/login.html")
-
-
 
 @csrf_exempt
 def scoreGet(request):
