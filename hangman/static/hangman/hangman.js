@@ -256,31 +256,33 @@ function checkWin(counter) {
 
 }
 
-
+var page = 2;
 
 
 function highscore() {
     document.getElementById("login-form").style.display = "none";
     document.getElementById("highscore").style.display = "block";
 
-    let container = document.getElementById("scoreContainer").innerHTML = "";
-
-    page = 2
-    displayScores(page);
+    container = document.getElementById("scoreContainer").innerHTML = "";
     
+    displayScores(page);
 }
-function displayScores(page) {
-    console.log("working");
 
+
+function displayScores(page) {
 
     fetch('/scoreGet')
     .then(response => response.json())
     .then(data => {
         container = document.getElementById("scoreContainer");
         counter = (page - 1) * 10;
-        value = 10;
+        page_count = page * 10;
 
-        while (counter < 10) { 
+
+        x = page;
+        
+
+        while (counter < page_count) {
             const element = document.createElement("div");
             element.className = "highStyle";
             element.innerHTML = `
@@ -291,7 +293,15 @@ function displayScores(page) {
             container.appendChild(element);
             counter += 1;
         }
+
+        console.log(counter);
+        console.log(page_count);
+        console.log(x);
+       
     });
+
+
+
 
 }
 
