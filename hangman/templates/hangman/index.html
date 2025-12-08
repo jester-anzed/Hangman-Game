@@ -25,9 +25,10 @@
             </div>
             <div id="scoreContainer" style="padding: 20px;">
             </div>
-            <div>
-                <button onclick="next_page()" >Next</button>
-                <button onclick="previous_page()" >Previous</button>
+            <div style="display: flex; justify-content: center";>
+                <button id="next_page" onclick="next_page()" >Next</button>
+                <div id="page_num"></div>
+                <button id="previous_page" onclick="previous_page()" >Previous</button>
             </div>
         </div>
         <div id="game-rules" style="display: none;">

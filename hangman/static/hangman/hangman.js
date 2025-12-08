@@ -256,31 +256,68 @@ function checkWin(counter) {
 
 }
 
-var page = 2;
-
+var current_page =  1;
+var length = 1;
 
 function highscore() {
     document.getElementById("login-form").style.display = "none";
     document.getElementById("highscore").style.display = "block";
+    const nextButton = document.getElementById("next_page");
+    
+    if (current_page === 1) {
+        const prevButton = document.getElementById("previous_page")
+        prevButton.disabled = true;
+    } else {
+        prevButton.disabled = false;
+    }
+
+    nextButton.disabled = false;
 
     container = document.getElementById("scoreContainer").innerHTML = "";
-    
-    displayScores(page);
+
+    displayScores(current_page);
 }
 
+function next_page() {
+    const prevButton = document.getElementById("previous_page")
+    prevButton.disabled = false;
+    container = document.getElementById("scoreContainer").innerHTML = "";
+    if (current_page < length) {
+        current_page++;
+        displayScores(current_page);
+    }
+
+    if (current_page === length) {
+        const nextButton = document.getElementById("next_page")
+        nextButton.disabled = true;
+    }
+}
+
+function previous_page() {
+    container = document.getElementById("scoreContainer").innerHTML = "";
+    const nextButton = document.getElementById("next_page")
+    nextButton.disabled = false;
+
+    if (current_page > 1) {
+        current_page--;
+        displayScores(current_page);
+    }
+
+    if (current_page === 1) {
+        const prevButton = document.getElementById("previous_page")
+        prevButton.disabled = true;
+    }
+
+}
 
 function displayScores(page) {
-
+    document.getElementById("page_num").innerHTML = "";
     fetch('/scoreGet')
     .then(response => response.json())
     .then(data => {
         container = document.getElementById("scoreContainer");
         counter = (page - 1) * 10;
         page_count = page * 10;
-
-
-        x = page;
-        
 
         while (counter < page_count) {
             const element = document.createElement("div");
@@ -293,17 +330,26 @@ function displayScores(page) {
             container.appendChild(element);
             counter += 1;
         }
+        
+        length = data.Score.length / 10;
+        length = Math.ceil(length)
 
-        console.log(counter);
-        console.log(page_count);
-        console.log(x);
-       
     });
+
+    const page_container = document.getElementById("page_num");
+
+    for (let i = 1; i <= length; i++) {
+        const page_element = document.createElement("button");
+        page_element.className = "pageNum";
+        page_element.innerHTML = i;
+        page_container.appendChild(page_element);
+    }
 
 
 
 
 }
+
 
 
 function playAgain() {
