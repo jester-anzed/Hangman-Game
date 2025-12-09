@@ -259,32 +259,13 @@ function checkWin(counter) {
 var current_page =  1;
 var length = 1;
 
-function highscore() {
-    document.getElementById("login-form").style.display = "none";
-    document.getElementById("highscore").style.display = "block";
-    const nextButton = document.getElementById("next_page");
-    
-    if (current_page === 1) {
-        const prevButton = document.getElementById("previous_page")
-        prevButton.disabled = true;
-    } else {
-        prevButton.disabled = false;
-    }
-
-    nextButton.disabled = false;
-
-    container = document.getElementById("scoreContainer").innerHTML = "";
-
-    displayScores(current_page);
-}
-
 function next_page() {
     const prevButton = document.getElementById("previous_page")
     prevButton.disabled = false;
     container = document.getElementById("scoreContainer").innerHTML = "";
     if (current_page < length) {
         current_page++;
-        displayScores(current_page);
+        displayScores();
     }
 
     if (current_page === length) {
@@ -300,7 +281,7 @@ function previous_page() {
 
     if (current_page > 1) {
         current_page--;
-        displayScores(current_page);
+        displayScores();
     }
 
     if (current_page === 1) {
@@ -310,14 +291,56 @@ function previous_page() {
 
 }
 
-function displayScores(page) {
+function displayScores() {
+    container = document.getElementById("scoreContainer").innerHTML = "";
+    document.getElementById("login-form").style.display = "none";
+    document.getElementById("highscore").style.display = "block";
     document.getElementById("page_num").innerHTML = "";
+
+    if (current_page === 1) {
+        const prevButton = document.getElementById("previous_page")
+        prevButton.disabled = true;
+    } else {
+        const prevButton = document.getElementById("previous_page")
+        prevButton.disabled = false;
+    }
+
+
     fetch('/scoreGet')
     .then(response => response.json())
     .then(data => {
         container = document.getElementById("scoreContainer");
-        counter = (page - 1) * 10;
-        page_count = page * 10;
+        counter = (current_page - 1) * 10;
+        page_count = current_page * 10;
+
+        length = data.Score.length / 10;
+        length = Math.ceil(length)
+
+        const page_container = document.getElementById("page_num");
+        
+        for (let i = 1; i <= length; i++) {
+            const page_element = document.createElement("button");
+            page_element.className = "pageNum";
+            page_element.innerHTML = i;
+            page_container.appendChild(page_element);           
+        }
+    
+        const test = document.querySelectorAll(".pageNum");
+        
+        test.forEach((item, index) => {
+            item.addEventListener("click", () => {
+                current_page = index + 1;
+                displayScores();
+
+                if (index + 1 === length) {
+                    const nextButton = document.getElementById("next_page")
+                    nextButton.disabled = true;
+                } else {
+                    const nextButton = document.getElementById("next_page")
+                    nextButton.disabled = false;
+                }
+            });
+        })
 
         while (counter < page_count) {
             const element = document.createElement("div");
@@ -330,23 +353,8 @@ function displayScores(page) {
             container.appendChild(element);
             counter += 1;
         }
-        
-        length = data.Score.length / 10;
-        length = Math.ceil(length)
 
     });
-
-    const page_container = document.getElementById("page_num");
-
-    for (let i = 1; i <= length; i++) {
-        const page_element = document.createElement("button");
-        page_element.className = "pageNum";
-        page_element.innerHTML = i;
-        page_container.appendChild(page_element);
-    }
-
-
-
 
 }
 
