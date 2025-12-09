@@ -340,3 +340,26 @@ ul {
 body {
     margin: 0px;
 }
+
+#page_num {
+    display: flex;
+    gap: 10px;
+}
+
+#pagination > button:hover, .pageNum:hover {
+    background-color: red;
+    border: 1px;
+    border-radius: 5px;
+}
+
+#pagination > button, .pageNum {
+    border: 1px;
+    border-radius: 5px;
+}
+
+
+#previous_page, #nextpage, .pageNum {
+    height: 30px;
+    width: 30px;
+
+}
