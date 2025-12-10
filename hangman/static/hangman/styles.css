@@ -380,6 +380,8 @@ body {
     justify-content: space-between;
     padding: 20px;
     font-size: 30px;
+    text-decoration: none;
+    color: white;
 }
 
 #user-mid {
@@ -404,4 +406,23 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+
+#user-top > a, #user-top > button {
+    text-decoration: none;
+    padding: 10px;
+    border: 1px;
+    background-color: gray;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+#user-top > button {
+    
+
+}
+
+#user-top > a:hover, #user-top > button:hover {
+    background-color: red;
 }
