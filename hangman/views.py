@@ -14,11 +14,14 @@ from .models import User, Score
 def index(request):
     if request.user.is_authenticated:
         name = request.user
+        date = request.user.date_joined.date()
 
         x = Score.objects.filter(name=name).aggregate(Max('score'))
         high = x['score__max']
+        print(date)
     
         return render(request, "hangman/index.html", {
+            "date": date,
             "name": name,
             "high": high,
 
@@ -46,7 +49,7 @@ def scoreRequest(request):
         user_score = data.get('userScore')
         print(data)
         print(user_score)
-    
+
         Score.objects.create(score=user_score, name=name)
 
         return JsonResponse({

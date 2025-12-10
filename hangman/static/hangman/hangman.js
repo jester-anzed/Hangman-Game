@@ -203,7 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function profile() {
     document.getElementById("login-form").style.display = "none";
-    document.getElementById("profile").style.display = "block";
+    document.getElementById("user-profile").style.display = "block";
 }
 
 
@@ -305,10 +305,15 @@ function displayScores() {
     if (current_page === 1) {
         const prevButton = document.getElementById("previous_page")
         prevButton.disabled = true;
+        const nextButton = document.getElementById("next_page");
+        nextButton.disabled = true;
     } else {
         const prevButton = document.getElementById("previous_page")
         prevButton.disabled = false;
+        const nextButton = document.getElementById("next_page");
+        nextButton.disabled = true;
     }
+
 
 
     fetch('/scoreGet')
@@ -336,13 +341,6 @@ function displayScores() {
                 item.classList.add('active');
             }
             item.addEventListener('click', () => {
-                const next = document.getElementById("next_page");
-                if (index + 1 === length) {
-                    next.disabled = true;
-                } else {
-                    next.disabled = false;
-                }
-
                 current_page = index + 1;
                 displayScores();
             });
