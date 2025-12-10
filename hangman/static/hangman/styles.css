@@ -358,8 +358,20 @@ body {
 }
 
 
-#previous_page, #nextpage, .pageNum {
-    height: 30px;
-    width: 30px;
+#previous_page, #next_page, .pageNum{
+    height: 40px;
+    width: 40px;
+}
+
+.active {
+    background-color: dodgerblue;
+}
+
+#user-profile {
+    height: 250px;
+    background-color: #424242;
+    width: 500px;
+    border: 1px;
+    border-radius: 20px;
 
 }

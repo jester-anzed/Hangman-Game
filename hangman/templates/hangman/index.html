@@ -5,7 +5,7 @@
     <div id="center">
         <div id="login-form";>
             <div id="log-content">
-                <button id="log-content-1">{{ name }}</button>
+                <button id="log-content-1" onclick="profile()">{{ name }}</button>
                 <button id="log-content-1" onclick="displayScores()">High Score</button>
                 <a id="log-content-1" href="{% url 'logout' %}">Logout</a>
             </div>
@@ -30,6 +30,14 @@
                 <div id="page_num"></div>
                 <button id="next_page" onclick="next_page()">&gt;&gt;</button>
             </div>
+        </div>
+        <div id="profile" style="display: none;">
+            <div id="user-profile">
+                <div>{{name}}</div>
+                <div>{{high}}</div>
+                <div></div>
+            </div>
+
         </div>
         <div id="game-rules" style="display: none;">
             <h1>Game Rules</h1>

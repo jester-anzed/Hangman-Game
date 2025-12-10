@@ -199,10 +199,15 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         
     });
-
-
-    
 });
+
+function profile() {
+    document.getElementById("login-form").style.display = "none";
+    document.getElementById("profile").style.display = "block";
+}
+
+
+
 
 function checkWin(counter) {
     if (counter === correct && counter === word.length) {
@@ -326,21 +331,22 @@ function displayScores() {
         }
     
         const test = document.querySelectorAll(".pageNum");
-        
         test.forEach((item, index) => {
-            item.addEventListener("click", () => {
+            if(index + 1 === current_page){
+                item.classList.add('active');
+            }
+            item.addEventListener('click', () => {
+                const next = document.getElementById("next_page");
+                if (index + 1 === length) {
+                    next.disabled = true;
+                } else {
+                    next.disabled = false;
+                }
+
                 current_page = index + 1;
                 displayScores();
-
-                if (index + 1 === length) {
-                    const nextButton = document.getElementById("next_page")
-                    nextButton.disabled = true;
-                } else {
-                    const nextButton = document.getElementById("next_page")
-                    nextButton.disabled = false;
-                }
             });
-        })
+        });
 
         while (counter < page_count) {
             const element = document.createElement("div");

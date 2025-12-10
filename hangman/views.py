@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
+from django.db.models import Max
 from django.http import HttpResponseRedirect, JsonResponse
 from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt
@@ -13,8 +14,14 @@ from .models import User, Score
 def index(request):
     if request.user.is_authenticated:
         name = request.user
+
+        x = Score.objects.filter(name=name).aggregate(Max('score'))
+        high = x['score__max']
+    
         return render(request, "hangman/index.html", {
             "name": name,
+            "high": high,
+
         })
 
     else:
