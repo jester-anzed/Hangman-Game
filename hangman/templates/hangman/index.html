@@ -33,21 +33,23 @@
         </div>
         <div id="user-profile" style="display: none;">
                 <div id="user-top">
-                    <button>Back</button>
-                    <div>
+                    <button onclick="menu()">Back</button>
+                    <div style="display: flex;">
                         <div>{{ name }}</div>
                         <div>Picture</div>
                     </div>
-                    <div></div>
+                    <a href="{% url 'logout' %}">Logout</a>
                 </div>
                 <div id="user-mid">
-                    <div>Easy</div>
-                    <div>Medium</div>
-                    <div>Hard</div>
-
+                    <div class="wrapper">
+                        <div>Easy: 1000</div>
+                        <div>Medium: 250</div>
+                        <div>Hard: 540</div>
+                    </div>
                 </div>
-            </div>
-
+                <div id="user-bottom">
+                    <div>Date Joined: {{ date }}</div>
+                </div>
         </div>
         <div id="game-rules" style="display: none;">
             <h1>Game Rules</h1>
