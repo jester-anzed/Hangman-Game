@@ -442,10 +442,7 @@ img {
 }
 #user1 {
     width: 50%;
-
 }
-
-
 
 #lab-wrapper {
     display: flex;
@@ -471,4 +468,21 @@ label:hover {
 
 #input-file {
     display: none;
+}
+
+#user1 {
+    text-align: center;
+}
+
+#user-wrapper {
+    margin: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+#user1-mode {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 50px;
 }

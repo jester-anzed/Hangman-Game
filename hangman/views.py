@@ -16,9 +16,18 @@ def index(request):
         name = request.user
         date = request.user.date_joined.date()
 
+        test = name
+        test.lower()
+
+        print(name)
+        print(test)
+
         x = Score.objects.filter(name=name).aggregate(Max('score'))
         high = x['score__max']
-        print(date)
+        
+
+    
+
     
         return render(request, "hangman/index.html", {
             "date": date,
