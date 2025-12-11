@@ -418,11 +418,30 @@ body {
     cursor: pointer;
 }
 
-#user-top > button {
-    
-
+#user-pic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
-
 #user-top > a:hover, #user-top > button:hover {
     background-color: red;
+}
+
+img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+label {
+    background-color: gray;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+
+
+}
+#input-file {
+    display: none;
 }
