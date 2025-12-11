@@ -3,7 +3,7 @@
 
 {% block body %}
     <div id="center">
-        <div id="login-form";>
+        <div id="login-form"; style="display: none";>
             <div id="log-content">
                 <button id="log-content-1" onclick="profile()">{{ name }}</button>
                 <button id="log-content-1" onclick="displayScores()">High Score</button>
@@ -31,25 +31,32 @@
                 <button id="next_page" onclick="next_page()">&gt;&gt;</button>
             </div>
         </div>
-        <div id="user-profile" style="display: none;">
-                <div id="user-top">
-                    <button onclick="menu()" style="font-size: 30px;">Back</button>
-                    <a href="{% url 'logout' %}">Logout</a>
-                </div>
-                <div id="user-pic">
-                    <img src="../media/images/no.jpg">
-                    <label for="input-file">Upload</label>
-                    <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file">
-                </div>
-                <div id="user-mid">
-                    <div class="wrapper">
-                        <div>Easy: 1000</div>
-                        <div>Medium: 250</div>
-                        <div>Hard: 540</div>
+        <div id="user-profile">
+                <div id="top-wrapper">
+                    <div id="user-top">
+                        <button onclick="menu()" style="font-size: 30px;">Back</button>
+                        <a href="{% url 'logout' %}">Logout</a>
                     </div>
                 </div>
-                <div id="user-bottom">
-                    <div>Date Joined: {{ date }}</div>
+                <div id="mid-profile">
+                     <div id="user-pic">    
+                        <div style="display: flex; gap: 10px;">         
+                            <img src="../media/images/no.jpg">
+                            <div id="lab-wrapper">
+                                <label for="input-file">Upload</label>
+                                <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file">
+                            </div>
+                        </div>
+                        <div style="padding-right: 50px;">
+                            <div>
+                                <div style="font-size: 40px;">Marc Ismael</div>
+                                <div style="text-align: center;">@marcismael</div>
+                            </div>
+                            <div style="padding-top: 10px; text-align: center;">Date Joined: {{ date }}</div>
+                        </div>
+                </div>
+                <div id="user1">
+                    <div>Yay</div>
                 </div>
         </div>
         <div id="game-rules" style="display: none;">
