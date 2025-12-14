@@ -79,40 +79,39 @@ let word = ""
 let pressedKeys = []
 let currentMode = ""
 let timeInterval = ""
-let sec = 10000;
+let sec = 60;
 let scoreData = {}
-
+let gameOver = false;
 
 function game_mode(mode) {
+    currentMode = mode;
     //Mode bassed on what the user clicked
-    if (mode === "easy") {
+    if (currentMode === "easy") {
         let easy = ["Noob", "Value", "Dog", "Cat"];
         ran = Math.floor(Math.random() * easy.length);
         word = easy[ran];
-        currentMode = "easy"
-    
     }
-    else if (mode === "medium") {
+    else if (currentMode === "medium") {
         let medium = ["Hangman", "Random", "Edited", "Course"];
         ran = Math.floor(Math.random() * medium.length);
         word = medium[ran];
-        currentMode = "medium"
       
     }
     else {
         let hard = ["Difficult", "Avalanche", "Verbatim", "Paragraph"];
         ran = Math.floor(Math.random() * hard.length);
         word = hard[ran];
-        currentMode = "hard"
-      
     }
 
     //Hide Game Option and Show Game
     document.getElementById("login-form").style.display = "none";
+    document.getElementById("mode").innerHTML = `MODE: ${currentMode.toUpperCase()}`;
     const prac = document.getElementById("game-rules").style.display = "flex";
-
+    console.log(currentMode);
+    console.log(word);
 
 }
+
 
 function time() {   
     sec -= 1;
@@ -120,7 +119,13 @@ function time() {
         clearInterval(timeInterval);
         document.getElementById("overlay").style.display = "block";
         document.getElementById("losePopup").style.display = "block";
-        document.getElementById("finalLose").innerHTML = `Final Score: ${score}`;
+
+        if (score > 0) {
+            document.getElementById("finalLose").innerHTML = `<h2>Final Score: ${score}</h2>`;
+            document.getElementById("finalLose").innerHTML = "<h2>No Points. Yikes!</h2>";
+        } else { 
+
+        }
     } 
     document.getElementById("time").innerHTML = `Time: ${sec}`;
 }
@@ -140,38 +145,49 @@ function next() {
 
 }
 
+
 document.addEventListener("DOMContentLoaded", () => {
-    const gameButton = document.querySelectorAll(".key-button");
-
+    gameButton = document.querySelectorAll(".key-button");
+    
     document.addEventListener('keydown', function(event) {
-        user_choice = event.key.toUpperCase();
-        let keyButton = document.querySelector(`[data-key="${user_choice}"]`)
-        keyButton.disabled = true;
-        
-        if (!pressedKeys.includes(user_choice)) {
-            pressedKeys.push(user_choice);
-        } else {
-            return;
-        }
 
-        if (word.toUpperCase().includes(user_choice)) {
-            for (let i = 0; i <word.length; i++) {
-                if (word[i].toUpperCase() === user_choice) {
-                    currentWord[i] = user_choice;
-                    finalWord = currentWord.join(' ');
-                    document.getElementById("game-word").innerHTML = finalWord
-                    document.getElementById("score").innerHTML = `Score: ${score += 20}`;
-                    correct += 1;
-               
+        if (!gameOver) {
+            user_choice = event.key.toUpperCase();
+            let keyButton = document.querySelector(`[data-key="${user_choice}"]`)
+            keyButton.disabled = true;
+            let points = 1
+            
+            if (currentMode === "hard") {
+                points = 3
+            } else if (currentMode === "medium") {
+                points = 2
+            }
+            
+            if (!pressedKeys.includes(user_choice)) {
+                pressedKeys.push(user_choice);
+            } else {
+                return;
+            }
+
+            if (word.toUpperCase().includes(user_choice)) {
+                for (let i = 0; i <word.length; i++) {
+                    if (word[i].toUpperCase() === user_choice) {
+                        currentWord[i] = user_choice;
+                        finalWord = currentWord.join(' ');
+                        document.getElementById("game-word").innerHTML = finalWord
+                        document.getElementById("score").innerHTML = `Score: ${score += (20 * points)}`;
+                        correct += 1;
+                
+                    }
                 }
-            }
-        checkWin(correct);
-        } else {     
-                wrong += 1;
-                document.getElementById("game-sticks").innerHTML = gameSticks[wrong];
-                document.getElementById("score").innerHTML = `Score: ${score -= 10}`;
-                checkWin(wrong);
-            }
+            checkWin(correct);
+            } else {     
+                    wrong += 1;
+                    document.getElementById("game-sticks").innerHTML = gameSticks[wrong];
+                    document.getElementById("score").innerHTML = `Score: ${score -= 10}`;
+                    checkWin(wrong);
+                }
+        };
     });
 
     gameButton.forEach(button => {
@@ -185,21 +201,22 @@ document.addEventListener("DOMContentLoaded", () => {
                         finalWord = currentWord.join(' ');
                         document.getElementById("game-word").innerHTML = finalWord
                         correct += 1
-
-                    
                     }
                 }
             checkWin(correct);
             }
             else {
                 wrong += 1
-                document.getElementById("game-sticks").innerHTML = gameSticks[wrong];
                 checkWin(wrong);
+                document.getElementById("game-sticks").innerHTML = gameSticks[wrong];
             }
         })
         
     });
 });
+
+
+
 
 function profile() {
     document.getElementById("login-form").style.display = "none";
@@ -207,14 +224,14 @@ function profile() {
 }
 
 
-
-
 function checkWin(counter) {
     if (counter === correct && counter === word.length) {
         clearInterval(timeInterval);
         
+        gameOver = true;
+
         let bonus = sec * 10;
-    
+
         document.getElementById("overlay").style.display = "block";
         document.getElementById("winPopup").style.display = "block";
         document.getElementById("score").innerHTML = `Score: ${score += 500 + bonus}`;
@@ -229,7 +246,7 @@ function checkWin(counter) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ userScore: score }),
+            body: JSON.stringify({ userScore: score, userMode: currentMode}),
         })
         .then(response => response.json())
         .then(data => {
@@ -240,11 +257,15 @@ function checkWin(counter) {
         clearInterval(timeInterval);
         document.getElementById("overlay").style.display = "block";
         document.getElementById("losePopup").style.display = "block";
-        
+
+       gameOver = true;
+
         if (score <= 0) {
             document.getElementById("finalLose").innerHTML = "<h2>No Points. Yikes!</h2>";
+            document.getElementById("cor-word").innerHTML = `<h2>Word: ${word}</h2>`;
         } else {
             document.getElementById("finalLose").innerHTML = `<h2>Final Score: ${score}</h2>`;
+            document.getElementById("cor-word").innerHTML = `<h2>Word: ${word}</h2>`;
             fetch('score', {
                 method: 'POST',
                 headers: {
@@ -302,7 +323,7 @@ function displayScores() {
     document.getElementById("highscore").style.display = "block";
     document.getElementById("page_num").innerHTML = "";
 
-    if (current_page === 1) {
+    if (current_page >= 1) {
         const prevButton = document.getElementById("previous_page")
         prevButton.disabled = true;
         const nextButton = document.getElementById("next_page");
@@ -311,7 +332,7 @@ function displayScores() {
         const prevButton = document.getElementById("previous_page")
         prevButton.disabled = false;
         const nextButton = document.getElementById("next_page");
-        nextButton.disabled = true;
+        nextButton.disabled = false;
     }
 
 
@@ -372,7 +393,7 @@ function playAgain() {
     document.getElementById("losePopup").style.display = "none";
     document.getElementById("score").innerHTML = `Score: ${score = 0}`;
     
-    sec = 30;
+    sec = 60;
     document.getElementById("time").innerHTML = `Time: ${sec}`;
     pressedKeys = []
     correct = 0;
@@ -380,8 +401,9 @@ function playAgain() {
     container = "";
     currentWord = "";
     word = "";
+    gameOver = false;
     
-    game_mode(currentMode)
+    game_mode(currentMode);
     next()
 
 
@@ -394,29 +416,31 @@ function playAgain() {
 
 
 function menu() {
-    console.log("working");
     clearInterval(timeInterval);
     document.getElementById("center").style.display = "flex";
     document.getElementById("login-form").style.display = "block";
     document.getElementById("center-1").style.display = "none";
+    document.getElementById("user-profile").style.display = "none";
     document.getElementById("overlay").style.display  = "none";
     document.getElementById("winPopup").style.display = "none";   
     document.getElementById("losePopup").style.display = "none";
     document.getElementById("highscore").style.display = "none";
     document.getElementById("game-rules").style.display = "none";
 
-    sec = 30;
+    sec = 60;
     document.getElementById("time").innerHTML = `Time: ${sec}`;
     correct = 0;
     wrong = 0;
     currentWord = "";
     word = "";
+    gameOver = false;
     score = 0;
     document.getElementById("score").innerHTML = `Score: ${score = 0}`;
     pressedKeys = []
 
     const gameButton = document.querySelectorAll(".key-button");
 
+    console.log(gameButton);
     gameButton.forEach(button => {
         button.disabled = false; 
     })

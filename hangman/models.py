@@ -11,6 +11,7 @@ class Score(models.Model):
     name = models.ForeignKey(User, on_delete=models.CASCADE)
     score = models.IntegerField()
     date = models.DateTimeField(default=timezone.now)
+    mode = models.CharField(max_length=7)
     
     def __str__(self):
         return f"{self.name} - {self.score}"

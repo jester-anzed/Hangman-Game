@@ -13,27 +13,19 @@ from .models import User, Score
 # Create your views here.
 def index(request):
     if request.user.is_authenticated:
-        name = request.user
+        name = request.user.username
+        tag = f"@{name.lower().replace(" ","")}"
         date = request.user.date_joined.date()
 
-        test = name
-        test.lower()
 
-        print(name)
-        print(test)
-
-        x = Score.objects.filter(name=name).aggregate(Max('score'))
+        x = Score.objects.filter(name__username=name).aggregate(Max('score'))
         high = x['score__max']
-        
-
-    
-
     
         return render(request, "hangman/index.html", {
             "date": date,
             "name": name,
             "high": high,
-
+            "tag": tag,
         })
 
     else:
@@ -43,7 +35,7 @@ def index(request):
 def scoreGet(request):
     score = Score.objects.all().order_by('-score')
 
-    score_list = [{"score": s.score, "user": s.name.username} for s in score]
+    score_list = [{"score": s.score, "user": s.name.username, "mode": s.mode} for s in score]
 
     return JsonResponse({
         "Score": score_list,
@@ -56,16 +48,18 @@ def scoreRequest(request):
         data = json.loads(request.body)
 
         user_score = data.get('userScore')
-        print(data)
-        print(user_score)
-
-        Score.objects.create(score=user_score, name=name)
+        user_mode = data.get('userMode')
+        
+        print(user_mode)
+        Score.objects.create(score=user_score, name=name, mode=user_mode)
 
         return JsonResponse({
             "name": request.user.username,
             "score": user_score,
+            "mode": user_mode,
         })
-    
+
+
 
 def login_view(request):
     if request.method == "POST":
