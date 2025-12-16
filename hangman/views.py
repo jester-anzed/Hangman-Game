@@ -18,13 +18,45 @@ def index(request):
         date = request.user.date_joined.date()
 
 
-        x = Score.objects.filter(name__username=name).aggregate(Max('score'))
-        high = x['score__max']
-    
+
+        easy = Score.objects.filter(name__username=name, mode="easy").aggregate(Max('score'))
+        med = Score.objects.filter(name__username=name, mode="medium").aggregate(Max('score'))
+        hard = Score.objects.filter(name__username=name, mode="hard").aggregate(Max('score'))
+        
+        if easy['score__max'] is None:
+            high_easy = "N/A"
+        else:
+            high_easy = easy['score__max']
+
+        if med['score__max'] is None:
+           high_med = "N/A"
+        else: 
+            high_med = med['score__max']
+
+        if hard['score__max'] is None:
+            high_hard = "N/A"
+        else:
+            high_hard = hard['score__max']  
+
+
+        if request.method == "POST":
+            userImage = request.FILES.get("userImage")
+
+            if request.user.image:
+                request.user.image.delete()
+
+            request.user.image = userImage
+            request.user.save()
+            
+
+
         return render(request, "hangman/index.html", {
+            "user": request.user,
             "date": date,
             "name": name,
-            "high": high,
+            "easy": high_easy,
+            "med": high_med,
+            "hard": high_hard,
             "tag": tag,
         })
 
@@ -35,10 +67,11 @@ def index(request):
 def scoreGet(request):
     score = Score.objects.all().order_by('-score')
 
-    score_list = [{"score": s.score, "user": s.name.username, "mode": s.mode} for s in score]
+    score_list = [{"score": s.score, "user": s.name.username, "mode": s.mode, "img": s.name.image.url} for s in score]
 
     return JsonResponse({
         "Score": score_list,
+
     })
 
 @csrf_exempt
@@ -50,7 +83,6 @@ def scoreRequest(request):
         user_score = data.get('userScore')
         user_mode = data.get('userMode')
         
-        print(user_mode)
         Score.objects.create(score=user_score, name=name, mode=user_mode)
 
         return JsonResponse({

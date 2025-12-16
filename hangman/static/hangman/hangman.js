@@ -107,8 +107,9 @@ function game_mode(mode) {
     document.getElementById("login-form").style.display = "none";
     document.getElementById("mode").innerHTML = `MODE: ${currentMode.toUpperCase()}`;
     const prac = document.getElementById("game-rules").style.display = "flex";
+    
+    currentMode = currentMode.toUpperCase();
     console.log(currentMode);
-    console.log(word);
 
 }
 
@@ -221,6 +222,14 @@ document.addEventListener("DOMContentLoaded", () => {
 function profile() {
     document.getElementById("login-form").style.display = "none";
     document.getElementById("user-profile").style.display = "block";
+
+    let profilePic = document.getElementById("profile-pic");
+    let inputFile = document.getElementById("input-file");
+
+
+    inputFile.onchange = function() {
+        profilePic.src = URL.createObjectURL(inputFile.files[0]);
+    }
 }
 
 
@@ -372,8 +381,11 @@ function displayScores() {
             element.className = "highStyle";
             element.innerHTML = `
             <div>${counter + 1}.</div>
-            <div>${data.Score[counter].score}</div>
-            <div>${data.Score[counter].user}</div>
+            <div>${data.Score[counter].score} - ${data.Score[counter].mode.toUpperCase()}</div>
+            <div>
+                <div>${data.Score[counter].user}</div>
+                <img src="${data.Score[counter].img}" alt="Profile-Pic">
+            </div>
             `;
             container.appendChild(element);
             counter += 1;
