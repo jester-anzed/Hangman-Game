@@ -109,6 +109,7 @@ function game_mode(mode) {
     const prac = document.getElementById("game-rules").style.display = "flex";
     
     currentMode = currentMode.toUpperCase();
+    console.log(word);
     console.log(currentMode);
 
 }
@@ -381,11 +382,12 @@ function displayScores() {
             element.className = "highStyle";
             element.innerHTML = `
             <div>${counter + 1}.</div>
-            <div>${data.Score[counter].score} - ${data.Score[counter].mode.toUpperCase()}</div>
-            <div>
+            <div style="display: flex;">${data.Score[counter].score} - ${data.Score[counter].mode.toUpperCase()}</div>
+            <div class="profile-tab">
                 <div>${data.Score[counter].user}</div>
                 <img src="${data.Score[counter].img}" alt="Profile-Pic">
             </div>
+        
             `;
             container.appendChild(element);
             counter += 1;

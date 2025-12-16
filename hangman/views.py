@@ -17,11 +17,9 @@ def index(request):
         tag = f"@{name.lower().replace(" ","")}"
         date = request.user.date_joined.date()
 
-
-
-        easy = Score.objects.filter(name__username=name, mode="easy").aggregate(Max('score'))
-        med = Score.objects.filter(name__username=name, mode="medium").aggregate(Max('score'))
-        hard = Score.objects.filter(name__username=name, mode="hard").aggregate(Max('score'))
+        easy = Score.objects.filter(name__username=name, mode="EASY").aggregate(Max('score'))
+        med = Score.objects.filter(name__username=name, mode="MEDIUM").aggregate(Max('score'))
+        hard = Score.objects.filter(name__username=name, mode="HARD").aggregate(Max('score'))
         
         if easy['score__max'] is None:
             high_easy = "N/A"

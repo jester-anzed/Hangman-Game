@@ -423,10 +423,24 @@ body {
     background-color: red;
 }
 
-img {
+#user-pic > img {
     width: 300px;
     height: 300px;
     border-radius: 50%;
+}
+
+.profile-tab > img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+
+}
+
+.profile-tab {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
 }
 
 #user-pic {
@@ -486,3 +500,4 @@ label:hover {
     align-items: flex-start;
     font-size: 50px;
 }
+
