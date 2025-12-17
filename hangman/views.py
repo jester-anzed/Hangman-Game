@@ -17,26 +17,7 @@ def index(request):
         tag = f"@{name.lower().replace(" ","")}"
         date = request.user.date_joined.date()
 
-        easy = Score.objects.filter(name__username=name, mode="EASY").aggregate(Max('score'))
-        med = Score.objects.filter(name__username=name, mode="MEDIUM").aggregate(Max('score'))
-        hard = Score.objects.filter(name__username=name, mode="HARD").aggregate(Max('score'))
-        
-        if easy['score__max'] is None:
-            high_easy = "N/A"
-        else:
-            high_easy = easy['score__max']
-
-        if med['score__max'] is None:
-           high_med = "N/A"
-        else: 
-            high_med = med['score__max']
-
-        if hard['score__max'] is None:
-            high_hard = "N/A"
-        else:
-            high_hard = hard['score__max']  
-
-
+      
         if request.method == "POST":
             userImage = request.FILES.get("userImage")
 
@@ -52,9 +33,6 @@ def index(request):
             "user": request.user,
             "date": date,
             "name": name,
-            "easy": high_easy,
-            "med": high_med,
-            "hard": high_hard,
             "tag": tag,
         })
 
@@ -71,6 +49,36 @@ def scoreGet(request):
         "Score": score_list,
 
     })
+
+@csrf_exempt
+def highScore(request):
+    name = request.user.username
+
+    easy = Score.objects.filter(name__username=name, mode="EASY").aggregate(Max('score'))
+    med = Score.objects.filter(name__username=name, mode="MEDIUM").aggregate(Max('score'))
+    hard = Score.objects.filter(name__username=name, mode="HARD").aggregate(Max('score'))
+        
+    if easy['score__max'] is None:
+        high_easy = "N/A"
+    else:
+        high_easy = easy['score__max']
+
+    if med['score__max'] is None:
+        high_med = "N/A"
+    else: 
+        high_med = med['score__max']
+
+    if hard['score__max'] is None:
+        high_hard = "N/A"
+    else:
+        high_hard = hard['score__max']  
+
+    return JsonResponse({
+        "easy": high_easy,
+        "med": high_med,
+        "hard": high_hard,
+    })
+
 
 @csrf_exempt
 def scoreRequest(request):

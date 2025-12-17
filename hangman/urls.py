@@ -14,4 +14,5 @@ urlpatterns = [
     #API
     path("score", views.scoreRequest, name="score"),
     path("scoreGet", views.scoreGet, name="getScore"),
+    path("highScore", views.highScore, name="highScore")
 ]

@@ -85,13 +85,14 @@ let gameOver = false;
 
 function game_mode(mode) {
     currentMode = mode;
+    currentMode = currentMode.toUpperCase();
     //Mode bassed on what the user clicked
-    if (currentMode === "easy") {
+    if (currentMode === "EASY") {
         let easy = ["Noob", "Value", "Dog", "Cat"];
         ran = Math.floor(Math.random() * easy.length);
         word = easy[ran];
     }
-    else if (currentMode === "medium") {
+    else if (currentMode === "MEDIUM") {
         let medium = ["Hangman", "Random", "Edited", "Course"];
         ran = Math.floor(Math.random() * medium.length);
         word = medium[ran];
@@ -226,11 +227,26 @@ function profile() {
 
     let profilePic = document.getElementById("profile-pic");
     let inputFile = document.getElementById("input-file");
-
+    
 
     inputFile.onchange = function() {
         profilePic.src = URL.createObjectURL(inputFile.files[0]);
     }
+
+    
+    fetch('/highScore')
+    .then(response => response.json())
+    .then(data => {
+        
+        console.log(data);
+        console.log(data.hard)
+        console.log(data.med);
+
+        document.getElementById("prof-easy").innerHTML = `Easy: ${data.easy}`;
+        document.getElementById("prof-medium").innerHTML = `Medium: ${data.med}`;
+        document.getElementById("prof-hard").innerHTML = `Hard:  ${data.hard}`;
+    
+    });
 }
 
 
@@ -296,18 +312,10 @@ var current_page =  1;
 var length = 1;
 
 function next_page() {
+    container = document.getElementById("scoreContainer").innerHTML = "";
     const prevButton = document.getElementById("previous_page")
     prevButton.disabled = false;
-    container = document.getElementById("scoreContainer").innerHTML = "";
-    if (current_page < length) {
-        current_page++;
-        displayScores();
-    }
 
-    if (current_page === length) {
-        const nextButton = document.getElementById("next_page")
-        nextButton.disabled = true;
-    }
 }
 
 function previous_page() {
@@ -327,25 +335,14 @@ function previous_page() {
 
 }
 
+
 function displayScores() {
     container = document.getElementById("scoreContainer").innerHTML = "";
     document.getElementById("login-form").style.display = "none";
     document.getElementById("highscore").style.display = "block";
     document.getElementById("page_num").innerHTML = "";
-
-    if (current_page >= 1) {
-        const prevButton = document.getElementById("previous_page")
-        prevButton.disabled = true;
-        const nextButton = document.getElementById("next_page");
-        nextButton.disabled = true;
-    } else {
-        const prevButton = document.getElementById("previous_page")
-        prevButton.disabled = false;
-        const nextButton = document.getElementById("next_page");
-        nextButton.disabled = false;
-    }
-
-
+    const nextButton = document.getElementById("next_page")
+    const prevButton = document.getElementById("previous_page")
 
     fetch('/scoreGet')
     .then(response => response.json())
@@ -357,15 +354,24 @@ function displayScores() {
         length = data.Score.length / 10;
         length = Math.ceil(length)
 
+        if(length === 1) {
+            nextButton.disabled = true;
+            prevButton.disabled = true;
+        } else {
+            nextButton.disabled = false;
+            prevButton.disabled = false;
+        }
+
+
         const page_container = document.getElementById("page_num");
         
         for (let i = 1; i <= length; i++) {
             const page_element = document.createElement("button");
             page_element.className = "pageNum";
             page_element.innerHTML = i;
-            page_container.appendChild(page_element);           
+            page_container.appendChild(page_element);
         }
-    
+
         const test = document.querySelectorAll(".pageNum");
         test.forEach((item, index) => {
             if(index + 1 === current_page){
@@ -380,14 +386,13 @@ function displayScores() {
         while (counter < page_count) {
             const element = document.createElement("div");
             element.className = "highStyle";
-            element.innerHTML = `
+            element.innerHTML = `      
             <div>${counter + 1}.</div>
-            <div style="display: flex;">${data.Score[counter].score} - ${data.Score[counter].mode.toUpperCase()}</div>
+            <div style="display: flex; padding: 10px;">${data.Score[counter].score} - ${data.Score[counter].mode.toUpperCase()}</div>
             <div class="profile-tab">
                 <div>${data.Score[counter].user}</div>
                 <img src="${data.Score[counter].img}" alt="Profile-Pic">
             </div>
-        
             `;
             container.appendChild(element);
             counter += 1;
