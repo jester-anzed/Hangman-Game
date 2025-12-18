@@ -313,9 +313,22 @@ var length = 1;
 
 function next_page() {
     container = document.getElementById("scoreContainer").innerHTML = "";
-    const prevButton = document.getElementById("previous_page")
-    prevButton.disabled = false;
 
+    const prevButton = document.getElementById("previous_page");
+    const nextButton = document.getElementById("next_page");
+
+    prevButton.disabled = false
+    
+    if (current_page < length) {
+        current_page ++;
+        displayScores();
+    }
+
+    if (current_page === length) {
+        nextButton.disabled = true;
+    }
+
+    
 }
 
 function previous_page() {
@@ -354,14 +367,25 @@ function displayScores() {
         length = data.Score.length / 10;
         length = Math.ceil(length)
 
-        if(length === 1) {
-            nextButton.disabled = true;
+        console.log(current_page);
+    
+        if (current_page === 1) {
             prevButton.disabled = true;
+            console.log("working");
         } else {
-            nextButton.disabled = false;
             prevButton.disabled = false;
         }
 
+        if(length === 1 ) {
+            nextButton.disabled = true;
+            prevButton.disabled = true;
+        }
+
+
+        if (current_page === length) {
+            nextButton.disabled = true;
+
+        }
 
         const page_container = document.getElementById("page_num");
         
