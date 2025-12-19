@@ -20,6 +20,7 @@ def index(request):
       
         if request.method == "POST":
             userImage = request.FILES.get("userImage")
+           
 
             if request.user.image:
                 request.user.image.delete()
@@ -28,6 +29,7 @@ def index(request):
             request.user.save()
             
 
+       
 
         return render(request, "hangman/index.html", {
             "user": request.user,

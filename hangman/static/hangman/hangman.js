@@ -71,11 +71,52 @@ let gameSticks = [
 `,
 ]
 
+let easy = [
+    {"category": "Animal", "name": "Lion"},
+    {"category": "Fruit", "name": "Apple"},
+    {"category": "Color", "name": "Blue"},
+    {"category": "Vehicle", "name": "Car"},
+    {"category": "Country", "name": "Canada"},
+    {"category": "Emotion", "name": "Happiness"},
+    {"category": "Profession", "name": "Doctor"},
+    {"category": "Sport", "name": "Football"},
+    {"category": "Technology", "name": "Computer"},
+    {"category": "Nature", "name": "Mountain"}
+]
+
+let medium = [
+    {"category": "Breeds of Dog", "name": "Beagle"},
+    {"category": "Vegetables", "name": "Spinach"},
+    {"category": "Things in Kitchen", "name": "Teaspoon"},
+    {"category": "Body Part", "name": "Forehead"},
+    {"category": "Movie", "name": "Gladiator"},
+    {"category": "Cartoon Character", "name": "Mickey M."},
+    {"category": "Fast Food", "name": "Hotdogss"},
+    {"category": "Desserts", "name": "Cupcakes"},
+    {"category": "Book", "name": "Dracula"},
+    {"category": "Gym Equipment", "name": "Dumbbell"}
+]
+
+
+let hard  = [
+    {"category": "Sports", "name": "Basketball"},
+    {"category": "Fruit", "name": "Pineapples"},
+    {"category": "Game", "name": "Crosswords"},
+    {"category": "Food", "name": "Lasagnette"},
+    {"category": "City", "name": "Amsterdam"},
+    {"category": "Device", "name": "Smartphone"},
+    {"category": "Drink", "name": "Smoothiest"},
+    {"category": "Country", "name": "Argentina"},
+    {"category": "Tree", "name": "Chestnuts"},
+    {"category": "Clothes", "name": "Sweatshirt"}
+]
+
 let wrong = 0;
 let correct = 0;
 let score = 0;
 let currentWord = ""
 let word = ""
+let category = ""
 let pressedKeys = []
 let currentMode = ""
 let timeInterval = ""
@@ -88,29 +129,34 @@ function game_mode(mode) {
     currentMode = currentMode.toUpperCase();
     //Mode bassed on what the user clicked
     if (currentMode === "EASY") {
-        let easy = ["Noob", "Value", "Dog", "Cat"];
         ran = Math.floor(Math.random() * easy.length);
-        word = easy[ran];
+        rand_word = easy[ran]
+        word = rand_word.name
+        category = rand_word.category
     }
     else if (currentMode === "MEDIUM") {
-        let medium = ["Hangman", "Random", "Edited", "Course"];
         ran = Math.floor(Math.random() * medium.length);
-        word = medium[ran];
+        rand_word = medium[ran]
+        word = rand_word.name
+        category = rand_word.category
       
     }
     else {
-        let hard = ["Difficult", "Avalanche", "Verbatim", "Paragraph"];
         ran = Math.floor(Math.random() * hard.length);
-        word = hard[ran];
+        rand_word = hard[ran]
+        word = rand_word.name
+        category = rand_word.category
     }
 
     //Hide Game Option and Show Game
     document.getElementById("login-form").style.display = "none";
     document.getElementById("mode").innerHTML = `MODE: ${currentMode.toUpperCase()}`;
     const prac = document.getElementById("game-rules").style.display = "flex";
+    document.getElementById("category").innerHTML = category;
     
     currentMode = currentMode.toUpperCase();
     console.log(word);
+    console.log(category);
     console.log(currentMode);
 
 }
@@ -160,12 +206,13 @@ document.addEventListener("DOMContentLoaded", () => {
             keyButton.disabled = true;
             let points = 1
             
-            if (currentMode === "hard") {
+            if (currentMode === "HARD") {
                 points = 3
-            } else if (currentMode === "medium") {
+            } else if (currentMode === "MEDIUM") {
                 points = 2
             }
             
+            console.log(points);
             if (!pressedKeys.includes(user_choice)) {
                 pressedKeys.push(user_choice);
             } else {
@@ -475,6 +522,7 @@ function menu() {
     correct = 0;
     wrong = 0;
     currentWord = "";
+    category = "";
     word = "";
     gameOver = false;
     score = 0;
