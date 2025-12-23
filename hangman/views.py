@@ -9,32 +9,42 @@ import json
 
 from .models import User, Score
 
+def profile(request):
+    if request.user.is_authenticated:
+        
+        profile = User.objects.get(username=request.user.username)
 
-# Create your views here.
+
+        if request.method == "POST":
+            profilePic = request.FILES.get("userImage")
+            name = User.objects.get(username=request.user.username)
+
+            if name.image:
+                name.image.delete()
+
+            name.image = profilePic
+            name.save()
+        return render(request, "hangman/profile.html", {
+            "name": profile,
+            })
+    
+
+
+
+    else: 
+        return render(request, "hangman/login.html")
+
+
+
 def index(request):
     if request.user.is_authenticated:
-        name = request.user.username
-        tag = f"@{name.lower().replace(" ","")}"
+        user = request.user.username
+        tag = f"@{user.lower().replace(" ","")}"
         date = request.user.date_joined.date()
 
-      
-        if request.method == "POST":
-            userImage = request.FILES.get("userImage")
-           
-
-            if request.user.image:
-                request.user.image.delete()
-
-            request.user.image = userImage
-            request.user.save()
-            
-
-       
-
         return render(request, "hangman/index.html", {
-            "user": request.user,
             "date": date,
-            "name": name,
+            "user": user,
             "tag": tag,
         })
 
@@ -59,7 +69,10 @@ def highScore(request):
     easy = Score.objects.filter(name__username=name, mode="EASY").aggregate(Max('score'))
     med = Score.objects.filter(name__username=name, mode="MEDIUM").aggregate(Max('score'))
     hard = Score.objects.filter(name__username=name, mode="HARD").aggregate(Max('score'))
-        
+    
+    x = User.objects.get(username=name)
+    image = x.image.url
+    
     if easy['score__max'] is None:
         high_easy = "N/A"
     else:
@@ -79,6 +92,7 @@ def highScore(request):
         "easy": high_easy,
         "med": high_med,
         "hard": high_hard,
+        "image": image,
     })
 
 

@@ -1,3 +1,3 @@
 # Hangman-Game
 
-Do category and names
+Fix image

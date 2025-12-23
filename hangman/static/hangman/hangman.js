@@ -212,7 +212,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 points = 2
             }
             
-            console.log(points);
             if (!pressedKeys.includes(user_choice)) {
                 pressedKeys.push(user_choice);
             } else {
@@ -268,33 +267,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+
+
 function profile() {
     document.getElementById("login-form").style.display = "none";
     document.getElementById("user-profile").style.display = "block";
 
     let profilePic = document.getElementById("profile-pic");
     let inputFile = document.getElementById("input-file");
-    
 
     inputFile.onchange = function() {
         profilePic.src = URL.createObjectURL(inputFile.files[0]);
     }
 
-    
-    fetch('/highScore')
-    .then(response => response.json())
-    .then(data => {
-        
-        console.log(data);
-        console.log(data.hard)
-        console.log(data.med);
+    let pic = document.getElementById("pic")
 
-        document.getElementById("prof-easy").innerHTML = `Easy: ${data.easy}`;
-        document.getElementById("prof-medium").innerHTML = `Medium: ${data.med}`;
-        document.getElementById("prof-hard").innerHTML = `Hard:  ${data.hard}`;
-    
+
+     fetch('/highScore')
+        .then(response => response.json())
+        .then(data => {
+
+            document.getElementById("prof-easy").innerHTML = `Easy: ${data.easy}`;
+            document.getElementById("prof-medium").innerHTML = `Medium: ${data.med}`;
+            document.getElementById("prof-hard").innerHTML = `Hard:  ${data.hard}`;
+        
+        });
+
+
+    pic.addEventListener("submit", function(event) {
+        event.preventDefault();
+        fetch('/highScore')
+        .then(response => response.json())
+        .then(data => {
+            
+            console.log(data);
+            document.getElementById("profile-pic").src = data.image;
+        
+        });
     });
 }
+
 
 
 function checkWin(counter) {
@@ -414,7 +426,6 @@ function displayScores() {
         length = data.Score.length / 10;
         length = Math.ceil(length)
 
-        console.log(current_page);
     
         if (current_page === 1) {
             prevButton.disabled = true;
@@ -510,7 +521,6 @@ function menu() {
     document.getElementById("center").style.display = "flex";
     document.getElementById("login-form").style.display = "block";
     document.getElementById("center-1").style.display = "none";
-    document.getElementById("user-profile").style.display = "none";
     document.getElementById("overlay").style.display  = "none";
     document.getElementById("winPopup").style.display = "none";   
     document.getElementById("losePopup").style.display = "none";
@@ -531,7 +541,6 @@ function menu() {
 
     const gameButton = document.querySelectorAll(".key-button");
 
-    console.log(gameButton);
     gameButton.forEach(button => {
         button.disabled = false; 
     })

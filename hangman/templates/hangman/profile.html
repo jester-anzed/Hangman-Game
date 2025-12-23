@@ -1,0 +1,57 @@
+{% extends "hangman/layout.html" %}
+{% load static %}
+
+
+{% block body %}
+    <div id="center">
+        <div id="user-profile">
+                <div id="top-wrapper">
+                    <div id="user-top">
+                        <a href="{% url 'index' %}" style="font-size: 30px;">Back</a>
+                        <a href="{% url 'logout' %}">Logout</a>
+                    </div>
+                </div>
+                <div id="mid-profile">
+                     <div id="user-pic">    
+                        <div style="display: flex; gap: 10px;">         
+                            <img src="{{ name.image.url }}" id="profile-pic" alt="{{ name.image.url }}">
+                            <div id="lab-wrapper">
+                                <form id="pic" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <label for="input-file">Upload</label>
+                                    <input type="file" name="userImage" accept="image/jpeg, image/png, image/jpg" id="input-file">
+                                    <button type="submit">Save</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div style="padding-right: 50px;">
+                            <div>
+                                <div style="font-size: 40px; text-align: center;">{{ user }}</div>
+                                <div style="text-align: center;">{{ tag }}</div>
+                                <div style="padding-top: 10px; text-align: center;">Date Joined: {{ date }}</div>
+                            </div>
+                        </div>
+                </div>
+                <div id="user1">
+                    <div>
+                        <div style="font-size: 50px; margin: 20px; height: 200 px;">Highest Scores</div>
+                    </div>
+                    <div id="user-wrapper">
+                        <div id="user1-mode">
+                            <div id="prof-easy"></div>
+                            <div id="prof-medium"></div>
+                            <div id="prof-hard"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block script %}
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+    <script src="{% static 'hangman/hangman.js' %}"></script>
+{% endblock %}
