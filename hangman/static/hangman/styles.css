@@ -94,7 +94,7 @@ ul {
     padding-bottom: 30px;
 }
 
-#log-content-1 {
+.log-content-1 {
     height: 70px;
     width: 30%;
     background-color: gray;
@@ -110,7 +110,7 @@ ul {
     color: white;
 }
 
-#log-content-1:hover {
+.log-content-1:hover {
     background-color: red;
     color: white;
 

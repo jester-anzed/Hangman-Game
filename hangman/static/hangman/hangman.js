@@ -266,10 +266,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
-
-
 function profile() {
+ 
+
     document.getElementById("login-form").style.display = "none";
     document.getElementById("user-profile").style.display = "block";
 
@@ -280,34 +279,39 @@ function profile() {
         profilePic.src = URL.createObjectURL(inputFile.files[0]);
     }
 
-    let pic = document.getElementById("pic")
+    const pic = document.getElementById("pic")
+
+    const imageFile = inputFile.files[0]
+
+    pic.addEventListener('submit', event => {
+        event.preventDefault();
+
+        const formData = new FormData(pic);
+        formData.append('image', imageFile)
+
+        fetch('/highScore', {
+            method: 'POST',
+            body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Success", data);
+            })
+
+    });
 
 
      fetch('/highScore')
         .then(response => response.json())
         .then(data => {
-
+           
             document.getElementById("prof-easy").innerHTML = `Easy: ${data.easy}`;
             document.getElementById("prof-medium").innerHTML = `Medium: ${data.med}`;
             document.getElementById("prof-hard").innerHTML = `Hard:  ${data.hard}`;
         
         });
 
-
-    pic.addEventListener("submit", function(event) {
-        event.preventDefault();
-        fetch('/highScore')
-        .then(response => response.json())
-        .then(data => {
-            
-            console.log(data);
-            document.getElementById("profile-pic").src = data.image;
-        
-        });
-    });
 }
-
-
 
 function checkWin(counter) {
     if (counter === correct && counter === word.length) {

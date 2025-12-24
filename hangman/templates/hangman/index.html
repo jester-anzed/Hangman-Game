@@ -5,9 +5,9 @@
     <div id="center">
         <div id="login-form">
             <div id="log-content">
-                <a id="log-content-1" href="{% url 'profile' %}" onclick="profile()">{{ user }}</a>
-                <button id="log-content-1" onclick="displayScores()">High Score</button>
-                <a id="log-content-1" href="{% url 'logout' %}">Logout</a>
+                <button class="log-content-1" onclick="profile()">{{ user }}</a>
+                <button class="log-content-1" onclick="displayScores()">High Score</button>
+                <a class="log-content-1" href="{% url 'logout' %}">Logout</a>
             </div>
             <div id="game-mode" style="justify-self: center; padding-bottom: 20px;";>
                 <button id="easy" value="easy" class="game" onclick="game_mode(this.value)">Easy</button>
@@ -29,6 +29,52 @@
                 <button id="previous_page"  onclick="previous_page()">&lt;&lt;</button>
                 <div id="page_num"></div>
                 <button id="next_page" onclick="next_page()">&gt;&gt;</button>
+            </div>
+        </div>
+        <div id="user-profile" style="display: none;">
+                <div id="top-wrapper">
+                    <div id="user-top">
+                        <a href="{% url 'index' %}" style="font-size: 30px;">Back</a>
+                        <a href="{% url 'logout' %}">Logout</a>
+                    </div>
+                </div>
+                <div id="mid-profile">
+                     <div id="user-pic">    
+                        <div style="display: flex; gap: 10px;">  
+                            {% if name.image %} 
+                                <img src="{{ name.image.url}}" id="profile-pic" alt="{{ name.image.url }}">
+                            {% else %}
+                                <img src="media/images/default.png" id="profile-pic" alt="default.png">
+                            {% endif %}
+                            <div id="lab-wrapper">
+                                <form id="pic" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <label for="input-file">Upload</label>
+                                    <input type="file" name="userImage" accept="image/jpeg, image/png, image/jpg" id="input-file">
+                                    <button type="submit">Save</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div style="padding-right: 50px;">
+                            <div>
+                                <div style="font-size: 40px; text-align: center;">{{ user }}</div>
+                                <div style="text-align: center;">{{ tag }}</div>
+                                <div style="padding-top: 10px; text-align: center;">Date Joined: {{ date }}</div>
+                            </div>
+                        </div>
+                </div>
+                <div id="user1">
+                    <div>
+                        <div style="font-size: 50px; margin: 20px; height: 200 px;">Highest Scores</div>
+                    </div>
+                    <div id="user-wrapper">
+                        <div id="user1-mode">
+                            <div id="prof-easy"></div>
+                            <div id="prof-medium"></div>
+                            <div id="prof-hard"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="game-rules" style="display: none;">

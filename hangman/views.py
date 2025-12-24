@@ -9,40 +9,26 @@ import json
 
 from .models import User, Score
 
-def profile(request):
-    if request.user.is_authenticated:
-        
-        profile = User.objects.get(username=request.user.username)
-
-
-        if request.method == "POST":
-            profilePic = request.FILES.get("userImage")
-            name = User.objects.get(username=request.user.username)
-
-            if name.image:
-                name.image.delete()
-
-            name.image = profilePic
-            name.save()
-        return render(request, "hangman/profile.html", {
-            "name": profile,
-            })
-    
-
-
-
-    else: 
-        return render(request, "hangman/login.html")
-
-
-
 def index(request):
     if request.user.is_authenticated:
         user = request.user.username
         tag = f"@{user.lower().replace(" ","")}"
         date = request.user.date_joined.date()
 
+
+        profile = User.objects.get(username=request.user.username)
+
+        if request.method == "POST":
+            profilePic = request.FILES.get("userImage")
+
+
+            if profilePic:
+                profile.image.delete(save=False)
+                profile.image = profilePic
+                profile.save()
+
         return render(request, "hangman/index.html", {
+            "name": profile,
             "date": date,
             "user": user,
             "tag": tag,
@@ -70,8 +56,18 @@ def highScore(request):
     med = Score.objects.filter(name__username=name, mode="MEDIUM").aggregate(Max('score'))
     hard = Score.objects.filter(name__username=name, mode="HARD").aggregate(Max('score'))
     
-    x = User.objects.get(username=name)
-    image = x.image.url
+    profile = User.objects.get(username=request.user.username)
+
+    if request.method == "POST":
+        profilePic = request.FILES.get("userImage")
+
+
+        if profilePic:
+            profile.image.delete(save=False)
+            profile.image = profilePic
+            profile.save()
+
+    image = profile.image.url if profile.image else None
     
     if easy['score__max'] is None:
         high_easy = "N/A"
