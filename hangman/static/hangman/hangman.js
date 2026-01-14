@@ -480,7 +480,7 @@ function displayScores() {
                 color = "yellow";
             }
             else {
-                color = "red";
+                color = "#4e0000";
             }
             
             const element = document.createElement("div");
