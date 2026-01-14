@@ -20,3 +20,16 @@ This project is distinct because it implements a fully interactive, dynamic game
     * Choose a difficulty mode (Easy, Medium, Hard).
     * The game will display a word to guess, track your score and wrong guesses, and update the hangman figure dynamically.
     * You can also view your personal high scores and the global leaderboard.
+
+
+## Additional Information
+Future Improvements:
+* Adding support for importing different word lists from external .txt files for each difficulty level.
+* Implementing additional difficulty modes or categories.
+* Enhancing animations and UI effects for better visual feedback.
+* Adding sound effects for correct or incorrect guesses.
+* Expanding the leaderboard with more detailed statistics or filtering options.
+* Improving mobile responsiveness with advanced CSS or frameworks.
+* Allowing users to customize their profile and personal game settings.
+
+Thanks for checking out this project! Happy coding!
