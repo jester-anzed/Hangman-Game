@@ -13,8 +13,8 @@ This project is distinct because it implements a fully interactive, dynamic game
 ## How to Run the Application
 1. Clone or download the project repository.
 2. Optionally create and activate a virtual environment.
-3. Apply migrations with ```bash python manage.py migrate```.
-4. Start the server using ```bashpython manage.py runserver``` and open ```bash http://127.0.0.1:8000/``` in your browser.
+3. Apply migrations with ```python manage.py migrate```.
+4. Start the server using ```python manage.py runserver``` and open ```http://127.0.0.1:8000/``` in your browser.
 5. Play the game
     * Register a new account or log in if you already have one.
     * Choose a difficulty mode (Easy, Medium, Hard).
