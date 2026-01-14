@@ -355,20 +355,20 @@ function checkWin(counter) {
         } else {
             document.getElementById("finalLose").innerHTML = `<h2>Final Score: ${score}</h2>`;
             document.getElementById("cor-word").innerHTML = `<h2>Word: ${word}</h2>`;
-            fetch('score', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ userScore: score }),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Success:', data);
-                })
-                }
+            console.log("working");
+            fetch('/score', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userScore: score, userMode: currentMode}),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+        })
+        }
     }
-
 }
 
 var current_page =  1;
@@ -470,16 +470,31 @@ function displayScores() {
         });
 
         while (counter < page_count) {
+
+            const test =  `${data.Score[counter].mode.toUpperCase()}`
+            console.log(test);
+            if (test === "EASY") {
+                color = "green";
+            }
+            else if(test === "MEDIUM") {
+                color = "yellow";
+            }
+            else {
+                color = "red";
+            }
+            
             const element = document.createElement("div");
             element.className = "highStyle";
             element.innerHTML = `      
             <div>${counter + 1}.</div>
-            <div style="display: flex; padding: 10px;">${data.Score[counter].score} - ${data.Score[counter].mode.toUpperCase()}</div>
+            <div style="display: flex; padding: 10px; color: ${color};">${data.Score[counter].score} - ${data.Score[counter].mode.toUpperCase()}</div>
             <div class="profile-tab">
                 <div>${data.Score[counter].user}</div>
                 <img src="${data.Score[counter].img}" alt="Profile-Pic">
             </div>
             `;
+           
+            
             container.appendChild(element);
             counter += 1;
         }
@@ -550,6 +565,3 @@ function menu() {
     })
 
 }
-
-
-
