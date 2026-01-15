@@ -10,6 +10,7 @@ This project is a full-featured, web-based Hangman game built with Python (Djang
 This project is distinct because it implements a fully interactive, dynamic game rather than a standard content or CRUD-style web app. The game consist of custom word banks, a timer, difficulty-based score multipliers, and detailed win/lose conditions. The Javascript supports both on-screen and physical keyboard input and handles UI transitions like popups, confetti, and resets. The backend provides JSON endpoints for score submission, leaderboard retrieval, and user-specific high scores, which update the UI automatically without reloading the page. It also includes user accounts, profile image uploads with live preview, saved scores, and a paginated global leaderboard, using Django authentication, file handling, database queries, and frontend logic. The result is a full-stack application which in my opinion is more complex than typical course projects.
 
 
+
 ## How to Run the Application
 1. Clone or download the project repository.
 2. Optionally create and activate a virtual environment.
@@ -20,6 +21,12 @@ This project is distinct because it implements a fully interactive, dynamic game
     * Choose a difficulty mode (Easy, Medium, Hard).
     * The game will display a word to guess, track your score and wrong guesses, and update the hangman figure dynamically.
     * You can also view your personal high scores and the global leaderboard.
+
+
+## What I Learned
+Building this project helped me better understand full-stack web development and how different technologies work together. I became more confident using Django beyond basic models and templates, especially with authentication, profile image uploads, and organizing models for features like scores and leaderboards. I also learned how to create and use backend endpoints with JSON and JavaScript fetch. The project helped me understand how data moves between the frontend and backend, including validating requests, handling CSRF tokens, and making sure actions like submitting scores happen at the right time.
+
+Overall, this project taught me how to plan, build, and refine a complete application from start to finish. It pushed me to write clearer code (though I still need to work on making it cleaner and less repetitive), organize features more effectively, and understand the reasoning behind technical decisions. It also showed me how much more there is to learn, motivating me to continue growing as a developer.
 
 
 ## Additional Information
