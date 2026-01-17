@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block body %}
-    <div id="center">
+    <div id="center" style="display: none">
         <div id="login-form">
             <div id="log-content">
                 <button class="log-content-1" onclick="profile()">{{ user }}</a>
@@ -103,23 +103,23 @@
         </div>
     </div>
 
-    <div id="center-1" style="display: none;">
+    <div id="center-1">
         <div id="game-box">
             <div id="game-top">
-                <div style="padding-left: 20px; font-size: 25px; width: 12%;">
+                <div id="game-top-1">
                     <div>{{ user }}</div>
                     <div id="score">Score: 0 </div>
                     <div id="time">Time: 60</div>
                 </div>
-                <div>
-                    <div style="text-align:center; font-size: 100px;">Hangman</div>
-                    <div id="mode" style="text-align: center; font-size: 40px; color: red;"></div>
+                <div id="game-top-2-filler">
+                    <div id="game-top-2">Hangman</div>
+                    <div id="mode">Mode: EASY</div>
                 </div>
                 <button  id="gamebox-button" onclick="menu()">Main Menu</button>
             </div>
-            <div id="g-overlay" style="display: flex;">
+            <div id="g-overlay" style="display: flex; padding: 5px;">
                 <div id="game-left">
-                    <div id="category" style="text-align: center; font-size: 50px;">Example</div>
+                    <div id="category">Example</div>
                     <div id="game-word"></div>
                     <div id="game-keys">
                         <div id="game-column" style="padding: 7px;">

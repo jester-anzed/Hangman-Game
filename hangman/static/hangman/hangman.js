@@ -120,7 +120,7 @@ let category = ""
 let pressedKeys = []
 let currentMode = ""
 let timeInterval = ""
-let sec = 60;
+let sec = 999999;
 let scoreData = {}
 let gameOver = false;
 
@@ -513,7 +513,7 @@ function playAgain() {
     document.getElementById("losePopup").style.display = "none";
     document.getElementById("score").innerHTML = `Score: ${score = 0}`;
     
-    sec = 60;
+    sec = 99999;
     document.getElementById("time").innerHTML = `Time: ${sec}`;
     pressedKeys = []
     correct = 0;
@@ -546,7 +546,7 @@ function menu() {
     document.getElementById("highscore").style.display = "none";
     document.getElementById("game-rules").style.display = "none";
 
-    sec = 60;
+    sec = 9999999;
     document.getElementById("time").innerHTML = `Time: ${sec}`;
     correct = 0;
     wrong = 0;

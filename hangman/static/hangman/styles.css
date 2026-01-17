@@ -552,7 +552,28 @@ label:hover, #save-button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
 
+#game-top-1 {
+    padding-left: 20px; 
+    font-size: 25px; 
+    width: 12%;
+}
+
+#game-top-2 {
+   text-align:center; 
+   font-size: 100px;
+}
+
+#mode {
+    text-align: center; 
+    font-size: 40px; 
+    color: red;
+}
+
+#category {
+    text-align: center; 
+    font-size: 50px;
 }
 
 
@@ -632,6 +653,83 @@ label:hover, #save-button:hover {
         background-color: #424242
     }
     
+    #center-1 {
+        height: 100vh;
+    }
 
+    #game-box {
+        width: 100%;
+        padding: 0px;
+        border: 0
+    }
+
+    #game-top-1 {
+        padding-left: 0px;
+
+    }
+
+    #game-top {
+        padding: 20px;
+    }   
+
+    #game-top-2-filler {
+        padding-left: 25px;
+    }
+
+    #game-top-1 > div{
+        font-size: 15px;
+    }
+    
+    #category {
+        font-size: 20px;
+    }
+
+    #game-top-2 {
+        font-size: 50px;
+    }
+
+    #mode {
+        font-size: 30px;
+
+    }
+    #gamebox-button {
+        font-size: 15px;
+        height: 0px;
+        width: 150px;
+        display: flex;
+        align-items: baseline;
+    }
+
+    #game-left {
+        width: auto;
+        height: auto;
+        margin: 0;
+        padding: 0;
+    }
+
+    #game-word {
+        height: auto;
+        font-size: 30px;
+        text-align: center;
+    }
+
+    #game-keys {
+        height: auto;
+        margin: 0;
+        padding: 10px;
+    }
+
+    .key-button {
+        font-size: 20px;
+        margin: 2px;
+    }
+
+    #game-right {
+        height: auto;
+        font-size: 24px;
+        padding-right: 30px;
+        margin: 0px;
+        display: flex;
+    }
 
 }
