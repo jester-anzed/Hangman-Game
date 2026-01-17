@@ -27,6 +27,7 @@ def index(request):
                 profile.image = profilePic
                 profile.save()
 
+
         return render(request, "hangman/index.html", {
             "name": profile,
             "date": date,

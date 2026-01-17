@@ -9,26 +9,28 @@
                 <button class="log-content-1" onclick="displayScores()">High Score</button>
                 <a class="log-content-1" href="{% url 'logout' %}">Logout</a>
             </div>
-            <div id="game-mode" style="justify-self: center; padding-bottom: 20px;";>
+            <div id="game-mode">
                 <button id="easy" value="easy" class="game" onclick="game_mode(this.value)">Easy</button>
                 <button id="medium" value="medium" class="game" onclick="game_mode(this.value)">Medium</button>
                 <button id="hard" value="hard" class="game" onclick="game_mode(this.value)">Hard</button>
             </div>
         </div>
         <div id="highscore" style="display: none;">
-            <div id="scoreButton">
-                <div style="width: 25%; text-align: left">
-                    <button id="score-button" onclick="menu()">Back</button>
+            <div id="highscore-filler">
+                <div id="scoreButton">
+                    <div style="text-align: left">
+                        <button id="score-button" onclick="menu()">Back</button>
+                    </div>
+                    <h1> Score Rankings</h1>
+                    <div></div>
                 </div>
-                <h1 style="width: 50%;">Score Rankings</h1>
-                <div style="width: 25%;"></div>
-            </div>
-            <div id="scoreContainer" style="padding: 20px;">
-            </div>
-            <div  id="pagination" style="display: flex; justify-content: center; gap: 10px;";>
-                <button id="previous_page"  onclick="previous_page()">&lt;&lt;</button>
-                <div id="page_num"></div>
-                <button id="next_page" onclick="next_page()">&gt;&gt;</button>
+                <div id="scoreContainer">
+                </div>
+                <div  id="pagination" style="display: flex; justify-content: center; gap: 10px;";>
+                    <button id="previous_page"  onclick="previous_page()">&lt;&lt;</button>
+                    <div id="page_num"></div>
+                    <button id="next_page" onclick="next_page()">&gt;&gt;</button>
+                </div>
             </div>
         </div>
         <div id="user-profile" style="display: none;">
@@ -41,10 +43,10 @@
                 <div id="mid-profile">
                      <div id="user-pic">    
                         <div style="display: flex; gap: 10px;">  
-                            {% if name.image %} 
-                                <img src="{{ name.image.url}}" id="profile-pic" alt="{{ name.image.url }}">
+                            {% if name.image %}
+                                <img src="{{ name.image.url }}" id="profile-pic" alt="Profile image">
                             {% else %}
-                                <img src="media/images/default.png" id="profile-pic" alt="default.png">
+                                <img src="{% static 'hangman/images/default.png' %}" alt="default.png" id="profile-pic">
                             {% endif %}
                             <div id="lab-wrapper">
                                 <form id="pic" method="POST" enctype="multipart/form-data">

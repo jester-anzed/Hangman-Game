@@ -4,7 +4,7 @@ from django.utils import timezone
 
 # Create your models here.
 class User(AbstractUser):
-    image = models.ImageField(default="default.png", blank=True, upload_to="images/") 
+    image = models.ImageField(null=True, blank=True, upload_to="images/") 
     pass
 
 

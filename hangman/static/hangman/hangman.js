@@ -415,7 +415,7 @@ function previous_page() {
 function displayScores() {
     container = document.getElementById("scoreContainer").innerHTML = "";
     document.getElementById("login-form").style.display = "none";
-    document.getElementById("highscore").style.display = "block";
+    document.getElementById("highscore").style.display = "flex";
     document.getElementById("page_num").innerHTML = "";
     const nextButton = document.getElementById("next_page")
     const prevButton = document.getElementById("previous_page")
@@ -480,7 +480,7 @@ function displayScores() {
                 color = "yellow";
             }
             else {
-                color = "#4e0000";
+                color = "red";
             }
             
             const element = document.createElement("div");
@@ -538,7 +538,7 @@ function playAgain() {
 function menu() {
     clearInterval(timeInterval);
     document.getElementById("center").style.display = "flex";
-    document.getElementById("login-form").style.display = "block";
+    document.getElementById("login-form").style.display = "flex";
     document.getElementById("center-1").style.display = "none";
     document.getElementById("overlay").style.display  = "none";
     document.getElementById("winPopup").style.display = "none";   

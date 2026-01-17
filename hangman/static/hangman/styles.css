@@ -35,8 +35,20 @@
     box-shadow: 0 0 10px #0e76e6;
 }
 
+#login-form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    text-align: center;
+    width:  45%;
+    height: auto;
+    border-radius: 20px;
+    background-color: #424242;
+    overflow: hidden;
+    position: absolute;
+}
 
-#login-form, #game-rules {
+#game-rules {
     padding: 20px;
     text-align: center;
     width:  45%;
@@ -144,7 +156,7 @@ ul {
 }
 
 #prof-hard {
-   color: #4e0000;
+   color: red;
 }
 
 #easy {
@@ -157,7 +169,7 @@ ul {
 }
 
 #hard {
-    background-color: #4e0000;
+    background-color: red;
 }
 
 #game-box {
@@ -266,7 +278,9 @@ ul {
 }
 
 #highscore {
-    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 20px;
     border-radius: 20px;
     background-color: #424242;
@@ -522,3 +536,102 @@ label:hover, #save-button:hover {
     font-size: 50px;
 }
 
+#scoreContainer {
+    padding: 20px;
+}
+
+#scoreButton > h1 {
+    width: 50%
+}
+
+#scoreButton > div {
+    width: 25%;
+}
+
+#game-mode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+@media (max-width: 600px) {
+    #login-form, #user-profile, #highscore {   
+       width: 99%;
+    }
+    
+    #scoreContainer, .highStyle {
+        padding: 10px;
+    }
+
+    #scoreButton {
+        font-size: 10px;
+    }
+
+    #scoreButton > div {
+        width: 0%
+    }
+
+    #score-button {
+        width: auto;
+    }
+
+    #highscore {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        border-radius: 0px;
+    }
+
+    .highStyle > div {
+        font-size: 15px;
+        justify-content: center;
+        padding: 0px;
+        border-radius: 0px;
+        padding: 0px;
+    }
+
+    #game-rules {
+        width: auto;
+        justify-content: center;
+        border-radius: 20px;
+        height: 100%;
+    }
+
+    .log-content-1, #easy, #medium, #hard {
+        font-size: 20px;
+        height: 50px;
+    }
+
+    #easy, #medium, #hard {
+        width: 150px;
+    }
+
+
+    #login-form {   
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        border-radius: 0px;
+        padding: 20px;
+    }
+
+    #game-mode {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    #log-content {
+        padding: 10px;
+    }
+
+    #center {
+        background-color: #424242
+    }
+    
+
+
+}
