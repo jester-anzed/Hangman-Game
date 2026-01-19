@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block body %}
-    <div id="center" style="display: none">
+    <div id="center">
         <div id="login-form">
             <div id="log-content">
                 <button class="log-content-1" onclick="profile()">{{ user }}</a>
@@ -36,7 +36,7 @@
         <div id="user-profile" style="display: none;">
                 <div id="top-wrapper">
                     <div id="user-top">
-                        <a href="{% url 'index' %}" style="font-size: 30px;">Back</a>
+                        <a href="{% url 'index' %}">Back</a>
                         <a href="{% url 'logout' %}">Logout</a>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                                 </form>
                             </div>
                         </div>
-                        <div style="padding-right: 50px;">
+                        <div id="user-pic-1" style="padding-right: 50px;">
                             <div>
                                 <div style="font-size: 40px; text-align: center;">{{ user }}</div>
                                 <div style="text-align: center;">{{ tag }}</div>
@@ -65,9 +65,10 @@
                             </div>
                         </div>
                 </div>
+                <hr>
                 <div id="user1">
                     <div>
-                        <div style="font-size: 50px; margin: 20px; height: 200 px;">Highest Scores</div>
+                        <div id="user1-1">Highest Scores</div>
                     </div>
                     <div id="user-wrapper">
                         <div id="user1-mode">
@@ -103,7 +104,7 @@
         </div>
     </div>
 
-    <div id="center-1">
+    <div id="center-1" style="display: none;">
         <div id="game-box">
             <div id="game-top">
                 <div id="game-top-1">

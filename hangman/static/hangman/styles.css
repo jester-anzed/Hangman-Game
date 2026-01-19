@@ -479,6 +479,7 @@ body {
     flex-direction: column;
     width: 50%;
     align-items: center;
+    padding: 10px;
 
 }
 #mid-profile {
@@ -487,6 +488,7 @@ body {
 }
 #user1 {
     width: 50%;
+    padding: 10px;
 }
 
 #lab-wrapper {
@@ -533,7 +535,7 @@ label:hover, #save-button:hover {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    font-size: 50px;
+    font-size: 40px;
 }
 
 #scoreContainer {
@@ -576,6 +578,19 @@ label:hover, #save-button:hover {
     font-size: 50px;
 }
 
+#user-top {
+    font-size: 30px;
+}
+
+#user-pic-1 {
+    padding-right: 50px;
+}   
+
+#user1-1 {
+    font-size: 40px; 
+    margin: 20px; 
+    height: 200 px;
+}
 
 @media (max-width: 600px) {
     #login-form, #user-profile, #highscore {   
@@ -731,5 +746,54 @@ label:hover, #save-button:hover {
         margin: 0px;
         display: flex;
     }
+
+    #winPopup {
+        font-size: 15px;
+        width: auto;
+        margin: 0px;
+    }
+
+    #losePopup {
+        margin: 0px;
+        width: 70%
+
+    }
+    #winPopup > button, #losePopup > button {
+        margin: 0px;
+    }
+    
+    #user-profile {
+        height: 100%;
+    }
+    
+    #user-top {
+        font-size: 20px;
+        align-items: center;
+    }
+
+    #mid-profile {
+        margin: 0px;
+        display: block;
+    }
+
+    #user-pic {
+        width: 100%;
+        padding: 0px;
+    }
+
+   #user1 {
+    width: 100%;
+    padding: 0px;
+   }
+
+   #user1-1 {
+    font-size: 40px;
+    text-align: center;
+    padding: 0px;
+   }
+
+   #user1-mode, #user1-1 {
+    font-size: 50px;
+   }
 
 }
