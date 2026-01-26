@@ -1,6 +1,6 @@
 # Hangman Game
 
-### Video Demo:
+### Video Demo: https://www.youtube.com/watch?v=zEBoRwEx0Ks
 
 ## Project Overview:
 This project is a full-featured, web-based Hangman game built with Python (Django), JavaScript, HTML, and CSS. It supports user authentication (register, login, logout), profile image uploads, multiple difficulty modes, a timed scoring system, and real-time gameplay with dynamic UI updates. The application includes backend API endpoints for submitting scores, retrieving global leaderboards, and displaying each user’s personal high scores, which are accessed by frontend through JavaScript fetch calls.
