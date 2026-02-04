@@ -3,11 +3,19 @@
 ### Video Demo: https://www.youtube.com/watch?v=zEBoRwEx0Ks
 
 ## Project Overview:
-This project is a full-featured, web-based Hangman game built with Python (Django), JavaScript, HTML, and CSS. It supports user authentication (register, login, logout), profile image uploads, multiple difficulty modes, a timed scoring system, and real-time gameplay with dynamic UI updates. The application includes backend API endpoints for submitting scores, retrieving global leaderboards, and displaying each user’s personal high scores, which are accessed by frontend through JavaScript fetch calls.
+This project is a full-featured, web-based Hangman game built using Django (Python) for the backend and JavaScript, HTML, and CSS for the frontend. The application supports user authentication (registration, login, logout), profile image uploads, multiple difficulty modes, a timed scoring system, and real-time gameplay with UI updates. The game interacts with the backend through custom JSON API endpoints, enabling asynchronous score submissions and real-time leaderboard updates without requiring a page reload. Users can view both their personal high scores and a global leaderboard.
 
 
 ## Distinctiveness and Complexity
-This project is distinct because it implements a fully interactive, dynamic game rather than a standard content or CRUD-style web app. Unlike many earlier course projects that relied heavily on form submissions and page reloads (such as Wiki), I chose to use JavaScript with fetch and custom Django JSON endpoints so the game could update in real time. I used Django for the backend because its built-in authentication and security features which helped with score tracking, profile image uploads, etc. I structured most of the game logic on the frontend to keep gameplay responsive, while keeping validation and data the backend(Django). I also designed separate models for users and scores to support queries for personal high scores and overall leaderboard. These choices reflect how this project is diifferent from previous projects. I'm proud of how it turned out even though the code structure could be better and not repetitive specially CSS part. 
+This project differs fundamentally from all prior CS50W projects and cannot reasonably be implemented as an extension of any of them.
+
+* Wiki is a content-driven application focused on creating and editing encyclopedia pages using form submissions. In contrast, this project is an interactive real-time game with continuous state updates handled by JavaScript.
+
+* Commerce centers around listings, bidding, and transactions. This project has no marketplace or CRUD-based item management and instead focuses on gameplay mechanics, scoring logic, and timing.
+
+* Network is a social media platform involving posts, follows, and likes. This project does not involve social networking features and instead emphasizes game logic, score tracking, and leaderboard systems.
+
+Unlike earlier projects that relied heavily on Django templates and page reloads, this application uses JavaScript fetch requests and custom Django JSON endpoints to update the game state. The emphasis on real-time interaction, scoring logic, and frontend–backend coordination differentiate this project in both purpose and implementation.
 
 
 
